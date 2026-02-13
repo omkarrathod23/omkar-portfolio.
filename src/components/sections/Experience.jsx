@@ -44,7 +44,7 @@ const WorkItem = ({ index, title, company, role, date, location }) => {
                         transition={{ duration: 0.3 }}
                         className="overflow-hidden"
                     >
-                        <div className="pb-8 pl-16 pr-12 text-secondary text-sm leading-relaxed max-w-xl">
+                        <div className="pb-6 sm:pb-8 pl-4 sm:pl-12 md:pl-16 pr-4 sm:pr-8 md:pr-12 text-secondary text-xs sm:text-sm leading-relaxed max-w-xl">
                             Architected and maintained high-performance microservices. Improved system latency by 30% through caching and query optimization. Led the migration of legacy systems to modern Spring Boot architecture.
                         </div>
                     </motion.div>

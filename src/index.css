@@ -102,11 +102,11 @@
   }
 
   .section-padding {
-    @apply py-16 md:py-24;
+    @apply py-12 sm:py-16 md:py-24;
   }
 
   .container {
-    @apply max-w-[700px] mx-auto px-4;
+    @apply max-w-[700px] mx-auto px-4 sm:px-6;
   }
 }
 

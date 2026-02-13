@@ -5,27 +5,27 @@ const Footer = () => {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="py-12 border-t border-white/[0.05] mt-24">
+        <footer className="py-8 sm:py-12 border-t border-white/[0.05] mt-12 sm:mt-16 lg:mt-24">
             <div className="container">
 
-                <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div className="flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8">
 
                     {/* Brand */}
-                    <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-center md:text-left">
-                        <div className="text-xl font-black text-white tracking-widest">
+                    <div className="flex flex-col md:flex-row items-center gap-3 sm:gap-4 md:gap-8 text-center md:text-left">
+                        <div className="text-lg sm:text-xl font-black text-white tracking-widest">
                             OMKAR
                         </div>
 
                         <div className="h-4 w-[1px] bg-white/10 hidden md:block" />
 
-                        <div className="text-xs font-bold text-secondary uppercase tracking-[0.2em]">
+                        <div className="text-[10px] sm:text-xs font-bold text-secondary uppercase tracking-[0.15em] sm:tracking-[0.2em]">
                             Java Full Stack Developer
                         </div>
                     </div>
 
 
                     {/* Social Links */}
-                    <div className="flex items-center gap-10">
+                    <div className="flex items-center gap-6 sm:gap-8 md:gap-10">
 
                         {/* GitHub */}
                         <a
@@ -70,7 +70,7 @@ const Footer = () => {
 
 
                     {/* Copyright */}
-                    <div className="text-[10px] font-bold text-dim uppercase tracking-[0.2em]">
+                    <div className="text-[9px] sm:text-[10px] font-bold text-dim uppercase tracking-[0.15em] sm:tracking-[0.2em] text-center md:text-left">
                         © {currentYear} Omkar Rathod. All rights reserved.
                     </div>
 

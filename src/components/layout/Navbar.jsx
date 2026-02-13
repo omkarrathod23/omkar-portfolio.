@@ -99,9 +99,9 @@ const Navbar = () => {
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
-                        className="md:hidden mt-4 mx-auto max-w-[1400px] card-glass pointer-events-auto bg-bg-primary/95 backdrop-blur-xl border-accent-primary/10 shadow-2xl"
+                        className="md:hidden mt-4 mx-4 max-w-[700px] sm:mx-auto card-glass pointer-events-auto bg-bg-primary/95 backdrop-blur-xl border-accent-primary/10 shadow-2xl"
                     >
-                        <div className="flex flex-col p-6 gap-6">
+                        <div className="flex flex-col p-4 sm:p-6 gap-4 sm:gap-6">
                             {navLinks.map((link) => (
                                 <a
                                     key={link.name}
@@ -114,7 +114,7 @@ const Navbar = () => {
                             ))}
                             <a
                                 href="mailto:omkarrathod101050@gmail.com"
-                                className="w-full text-center text-xs font-bold uppercase tracking-widest px-4 py-4 bg-accent-primary text-bg-primary rounded-xl"
+                                className="w-full text-center text-[11px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest px-4 py-3 sm:py-4 bg-accent-primary text-bg-primary rounded-xl"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
                                 Hire me

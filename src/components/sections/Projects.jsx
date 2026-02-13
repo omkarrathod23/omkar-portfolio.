@@ -72,13 +72,13 @@ const Projects = () => {
     ];
 
     return (
-        <section id="projects" className="container py-16 flex flex-col gap-8">
-            <div className="card-glass flex flex-col gap-8">
+        <section id="projects" className="container py-8 sm:py-12 md:py-16 flex flex-col gap-6 sm:gap-8">
+            <div className="card-glass flex flex-col gap-6 sm:gap-8">
                 <div className="flex items-center gap-2">
-                    <h2 className="text-lg font-semibold">Proof of <span className="text-secondary">Work</span></h2>
+                    <h2 className="text-base sm:text-lg font-semibold">Proof of <span className="text-secondary">Work</span></h2>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 md:gap-10">
                     {projects.map((project, index) => (
                         <ProjectCard key={index} {...project} />
                     ))}

@@ -34,10 +34,10 @@ const Layout = ({ children }) => {
                     max-w-[1400px]
                     w-full
                     mx-auto
-                    px-8
-                    pt-24
-                    pb-32
-                    space-y-32
+                    px-4 sm:px-6 lg:px-8
+                    pt-20 sm:pt-24
+                    pb-16 sm:pb-24 lg:pb-32
+                    space-y-16 sm:space-y-24 lg:space-y-32
                 ">
                     {children}
                 </div>

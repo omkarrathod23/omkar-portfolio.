@@ -10,7 +10,7 @@ import TechStack from './components/sections/TechStack';
 function App() {
     return (
         <Layout>
-            <div className="flex flex-col gap-0 md:gap-4 max-w-[700px] mx-auto">
+            <div className="flex flex-col gap-0 md:gap-4 w-full">
                 <Hero />
                 <Experience />
                 <Projects />

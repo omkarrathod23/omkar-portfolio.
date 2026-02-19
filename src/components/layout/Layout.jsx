@@ -6,17 +6,37 @@ const Layout = ({ children }) => {
         <div className="relative min-h-screen bg-bg-primary text-accent-primary overflow-x-hidden transition-colors duration-300">
 
             {/* ================= Premium Background ================= */}
-            <div className="fixed inset-0 -z-10 pointer-events-none">
+            {/* ================= Premium Animated Background ================= */}
+            <div className="fixed inset-0 -z-50 pointer-events-none overflow-hidden">
+                {/* 1. Base Gradient Layer */}
+                <div className="absolute inset-0 bg-bg-primary transition-colors duration-500" />
 
-                {/* grid */}
-                <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02] 
-                    bg-[linear-gradient(var(--accent-primary)_1px,transparent_1px),
-                    linear-gradient(90deg,var(--accent-primary)_1px,transparent_1px)]
-                    bg-[size:40px_40px]" />
+                {/* 2. Animated Gradient Orbs (Mesh Gradient Effect) */}
+                <div className="absolute top-0 left-0 w-full h-full opacity-40 dark:opacity-30">
+                    {/* Orb 1: Purple/Pink */}
+                    <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob dark:mix-blend-screen dark:opacity-30" />
 
-                {/* glow lights */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[600px] bg-indigo-500/10 dark:bg-indigo-500/5 blur-[200px] rounded-full" />
-                <div className="absolute bottom-0 left-1/3 w-[900px] h-[500px] bg-emerald-500/10 dark:bg-emerald-500/5 blur-[200px] rounded-full" />
+                    {/* Orb 2: Indigo/Blue */}
+                    <div className="absolute top-0 -right-4 w-72 h-72 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000 dark:mix-blend-screen dark:opacity-30" />
+
+                    {/* Orb 3: Pink/Rose */}
+                    <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000 dark:mix-blend-screen dark:opacity-30" />
+
+                    {/* Large central glow for depth */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-tr from-indigo-500/10 to-purple-500/10 rounded-full blur-[100px] pointer-events-none" />
+                </div>
+
+                {/* 3. Grid Pattern Overlay */}
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+
+
+
+                {/* 4. Noise Texture for "Grainy" Premium Feel */}
+                <div className="absolute inset-0 bg-noise opacity-[0.03] mix-blend-overlay pointer-events-none" />
+
+                {/* 5. 3D Background Removed due to compatibility issues. 
+                    The CSS Animation (Orbs) above provides the "Best of All Time" effect. 
+                */}
             </div>
 
 

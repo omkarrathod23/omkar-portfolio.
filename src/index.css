@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -11,6 +11,7 @@
 
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-display: "Inter", sans-serif;
+  --font-serif: "Playfair Display", serif;
 
   --radius-xl: 0.75rem;
   --radius-2xl: 1rem;
@@ -19,8 +20,9 @@
 }
 
 :root {
-  --bg-primary: #090909;
-  --bg-secondary: #121212;
+  --bg-primary: #050505;
+  /* Slightly darker for more contrast */
+  --bg-secondary: #0a0a0a;
   --accent-primary: #ffffff;
   --accent-secondary: #a1a1a1;
   --secondary: #888888;
@@ -29,21 +31,24 @@
 
 :root.light {
   --bg-primary: #ffffff;
-  --bg-secondary: #f9f9fb;
-  --accent-primary: #121212;
+  --bg-secondary: #fafafa;
+  /* Cleaner off-white */
+  --accent-primary: #09090b;
+  /* Darker text for readability */
   --accent-secondary: #52525b;
-  --secondary: #64748b;
-  --dim: #f1f5f9;
+  --secondary: #71717a;
+  --dim: #e4e4e7;
 }
 
 @layer base {
+
   html {
     @apply scroll-smooth;
   }
 
   body {
     @apply bg-bg-primary text-accent-primary font-sans antialiased overflow-x-hidden;
-    line-height: 1.5;
+    line-height: 1.6;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 
@@ -53,66 +58,77 @@
   h4,
   h5,
   h6 {
-    @apply font-display font-semibold tracking-tight;
+    @apply font-display font-bold tracking-tight;
   }
 }
 
 @layer components {
   .grid-bg {
-    background-size: 40px 40px;
+    background-size: 50px 50px;
     background-image:
       linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
       linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
   }
 
   :root {
-    --grid-color: rgba(255, 255, 255, 0.02);
+    --grid-color: rgba(255, 255, 255, 0.03);
   }
 
   :root.light {
-    --grid-color: rgba(0, 0, 0, 0.02);
+    --grid-color: rgba(0, 0, 0, 0.03);
+  }
+
+  .glass-panel {
+    @apply bg-bg-secondary/50 backdrop-blur-xl border border-accent-primary/5;
   }
 
   .card-glass {
-    @apply bg-bg-secondary border border-accent-primary/5 rounded-2xl p-6;
-    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    @apply bg-bg-secondary/40 backdrop-blur-lg border border-accent-primary/5 rounded-2xl p-6;
+    transition: all 0.3s cubic-bezier(0.2, 0, 0.2, 1);
   }
 
   :root.light .card-glass {
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
-    border-color: rgba(18, 18, 18, 0.03);
+    @apply bg-white/60 border-black/5 shadow-sm;
   }
 
   .card-glass-hover {
-    @apply transition-all duration-300 hover:border-accent-primary/20 hover:bg-bg-secondary/80;
+    @apply hover:border-accent-primary/20 hover:bg-bg-secondary/60 hover:-translate-y-1 hover:shadow-lg;
   }
 
   :root.light .card-glass-hover {
-    &:hover {
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
-    }
+    @apply hover:border-black/10 hover:shadow-xl;
   }
 
   .btn-primary {
-    @apply px-4 py-2 bg-accent-primary text-bg-primary rounded-xl font-semibold text-sm transition-all hover:opacity-90 active:scale-95 shadow-sm;
+    @apply px-6 py-3 bg-accent-primary text-bg-primary rounded-xl font-semibold text-sm transition-all hover:opacity-90 active:scale-95 shadow-[0_0_20px_#ffffff1a];
+  }
+
+  :root.light .btn-primary {
+    @apply shadow-[0_4px_14px_#0000001a];
   }
 
   .btn-secondary {
-    @apply px-4 py-2 bg-bg-secondary text-accent-primary border border-accent-primary/5 rounded-xl font-semibold text-sm transition-all hover:bg-accent-primary/5 active:scale-95 shadow-sm;
+    @apply px-6 py-3 bg-white/5 backdrop-blur-sm text-accent-primary border border-white/10 rounded-xl font-semibold text-sm transition-all hover:bg-white/10 active:scale-95;
+  }
+
+  :root.light .btn-secondary {
+    @apply bg-black/5 border-black/5 hover:bg-black/10;
   }
 
   .section-padding {
-    @apply py-12 sm:py-16 md:py-24;
+    @apply py-20 sm:py-28;
   }
 
-  .container {
-    @apply max-w-[700px] mx-auto px-4 sm:px-6;
+  .container-wide {
+    @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-12;
   }
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -120,15 +136,50 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 10px;
+  background: rgba(156, 163, 175, 0.2);
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #444;
+  background: rgba(156, 163, 175, 0.4);
 }
 
 ::selection {
-  background: #fff;
-  color: #000;
+  background: rgba(168, 85, 247, 0.3);
+  color: inherit;
+}
+
+/* Background Utilities */
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
 }

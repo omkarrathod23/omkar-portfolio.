@@ -1,71 +1,94 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Code2 } from 'lucide-react';
 
 const skills = [
-    { name: 'Java', logo: 'https://cdn.simpleicons.org/openjdk' },
-    { name: 'Spring Boot', logo: 'https://cdn.simpleicons.org/springboot' },
     { name: 'React', logo: 'https://cdn.simpleicons.org/react' },
-    { name: 'PostgreSQL', logo: 'https://cdn.simpleicons.org/postgresql' },
-    { name: 'AWS', logo: 'https://cdn.simpleicons.org/amazonaws' },
-    { name: 'Docker', logo: 'https://cdn.simpleicons.org/docker' },
-    { name: 'JavaScript', logo: 'https://cdn.simpleicons.org/javascript' },
+    { name: 'Next.js', logo: 'https://cdn.simpleicons.org/nextdotjs' },
     { name: 'TypeScript', logo: 'https://cdn.simpleicons.org/typescript' },
     { name: 'Tailwind CSS', logo: 'https://cdn.simpleicons.org/tailwindcss' },
-    { name: 'Next.js', logo: 'https://cdn.simpleicons.org/nextdotjs' },
+    { name: 'JavaScript', logo: 'https://cdn.simpleicons.org/javascript' },
+    { name: 'Java', logo: 'https://cdn.simpleicons.org/openjdk' },
+    { name: 'Spring Boot', logo: 'https://cdn.simpleicons.org/springboot' },
+    { name: 'Python', logo: 'https://cdn.simpleicons.org/python' },
+    { name: 'PostgreSQL', logo: 'https://cdn.simpleicons.org/postgresql' },
+    { name: 'MongoDB', logo: 'https://cdn.simpleicons.org/mongodb' },
+    { name: 'Docker', logo: 'https://cdn.simpleicons.org/docker' },
+    { name: 'AWS', logo: 'https://cdn.simpleicons.org/amazonaws' },
 ];
 
-const SkillItem = ({ skill }) => (
-    <div className="flex flex-col items-center gap-3 sm:gap-4 px-6 sm:px-8 min-w-[110px] sm:min-w-[140px] group transition-all duration-300">
-        <div className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center rounded-xl sm:rounded-2xl bg-accent-primary/[0.02] dark:bg-accent-primary/5 border border-accent-primary/5 group-hover:bg-accent-primary/[0.05] group-hover:border-accent-primary/10 transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl group-hover:shadow-accent-primary/5">
-            <img
-                src={skill.logo}
-                alt={skill.name}
-                className="w-6 h-6 sm:w-8 sm:h-8 opacity-80 group-hover:opacity-100 transition-opacity"
-            />
-        </div>
-        <span className="text-[9px] sm:text-[10px] font-bold text-secondary group-hover:text-accent-primary transition-colors uppercase tracking-[0.15em] sm:tracking-[0.2em] text-center">
-            {skill.name}
-        </span>
-    </div>
-);
+const SkillCard = ({ skill, index }) => {
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 20, scale: 0.9 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.05 }}
+            whileHover={{ y: -4 }}
+            className="flex flex-col items-center gap-4 p-6 md:p-8 bg-bg-secondary hover:bg-accent-primary/5 border border-accent-primary/10 hover:border-accent-primary/20 rounded-2xl transition-all"
+        >
+            <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center rounded-xl bg-accent-primary/10 border border-accent-primary/20">
+                <img
+                    src={skill.logo}
+                    alt={skill.name}
+                    className="w-8 h-8 md:w-10 md:h-10"
+                />
+            </div>
+
+            <span className="text-sm md:text-base font-bold text-accent-primary">
+                {skill.name}
+            </span>
+        </motion.div>
+    );
+};
 
 const TechStack = () => {
     return (
-        <section id="skills" className="container py-12 sm:py-16 md:py-24 overflow-hidden">
+        <section id="skills" className="py-16 md:py-24">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="mb-8 sm:mb-10 md:mb-12 flex flex-col gap-1.5 sm:gap-2"
             >
-                <h2 className="text-base sm:text-lg md:text-xl font-medium text-secondary tracking-tight">Stack I use</h2>
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight max-w-lg">
-                    Technologies I work with to build products that solve real problems
-                </h3>
-            </motion.div>
+                <div className="mb-10 md:mb-14">
+                    <motion.div
+                        className="flex items-center gap-3 mb-4"
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                    >
+                        <span className="text-accent-primary text-sm font-black uppercase tracking-[0.2em]">
+                            Tech Stack
+                        </span>
+                        <Code2 className="text-accent-primary" size={18} />
+                    </motion.div>
 
-            <div className="relative mt-6 sm:mt-8">
-                {/* Left gradient fade */}
-                <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 md:w-32 bg-gradient-to-r from-bg-primary to-transparent z-10" />
+                    <motion.h2
+                        className="text-4xl md:text-5xl font-black text-accent-primary mb-4 leading-tight"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 }}
+                    >
+                        Technologies I Master
+                    </motion.h2>
+                    <motion.p
+                        className="text-secondary text-base md:text-lg max-w-2xl leading-relaxed"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.3 }}
+                    >
+                        Building with modern frameworks, robust backends, and scalable infrastructure
+                    </motion.p>
+                </div>
 
-                <motion.div
-                    animate={{ x: ['0%', '-50%'] }}
-                    transition={{
-                        repeat: Infinity,
-                        duration: 25,
-                        ease: 'linear'
-                    }}
-                    className="flex items-center w-max"
-                >
-                    {/* Duplicate skills for infinite loop */}
-                    {[...skills, ...skills, ...skills].map((skill, index) => (
-                        <SkillItem key={index} skill={skill} />
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-5 md:gap-6">
+                    {skills.map((skill, index) => (
+                        <SkillCard key={skill.name} skill={skill} index={index} />
                     ))}
-                </motion.div>
-
-                {/* Right gradient fade */}
-                <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 md:w-32 bg-gradient-to-l from-bg-primary to-transparent z-10" />
-            </div>
+                </div>
+            </motion.div>
         </section>
     );
 };

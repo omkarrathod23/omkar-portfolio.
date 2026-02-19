@@ -25,72 +25,78 @@ const Navbar = () => {
     ];
 
     return (
-        <nav className="fixed top-8 left-0 right-0 z-50 px-4 pointer-events-none">
-            <div className="max-w-[700px] mx-auto pointer-events-auto">
-                <motion.div
-                    className={`flex items-center justify-between px-8 py-4 rounded-2xl border transition-all duration-300 ${isScrolled ? 'bg-bg-primary/80 backdrop-blur-xl border-accent-primary/10 shadow-xl' : 'bg-transparent border-transparent'}`}
-                >
-                    <a href="#" className="font-bold text-xl tracking-tighter hover:opacity-80 transition-opacity text-accent-primary">
-                        om<span className="text-indigo-500">.</span>
-                    </a>
-
-                    {/* Desktop Links */}
-                    <div className="hidden md:flex items-center gap-8">
-                        {navLinks.map((link) => (
-                            <a
-                                key={link.name}
-                                href={link.href}
-                                className="text-xs font-medium text-secondary hover:text-white transition-colors uppercase tracking-widest"
-                            >
-                                {link.name}
-                            </a>
-                        ))}
-                    </div>
-
-                    {/* Theme Toggle & Hire me */}
-                    <div className="hidden md:flex items-center gap-4">
-                        <button
-                            onClick={toggleTheme}
-                            className="p-2 rounded-xl bg-accent-primary/5 hover:bg-accent-primary/10 transition-colors border border-accent-primary/5 text-accent-primary"
-                            aria-label="Toggle theme"
-                        >
-                            <AnimatePresence mode="wait">
-                                <motion.div
-                                    key={theme}
-                                    initial={{ y: -20, opacity: 0, rotate: -90 }}
-                                    animate={{ y: 0, opacity: 1, rotate: 0 }}
-                                    exit={{ y: 20, opacity: 0, rotate: 90 }}
-                                    transition={{ duration: 0.2 }}
-                                >
-                                    {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-                                </motion.div>
-                            </AnimatePresence>
-                        </button>
-
-                        <a href="mailto:omkarrathod101050@gmail.com">
-                            <span className="text-xs font-bold uppercase tracking-widest px-4 py-2 bg-accent-primary text-bg-primary rounded-lg hover:opacity-90 transition-all">
-                                Hire me
-                            </span>
+        <>
+            <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center py-4 px-4 pointer-events-none">
+                <div className="w-full max-w-7xl pointer-events-auto">
+                    <motion.div
+                        className={`flex items-center justify-between px-6 py-3 rounded-2xl transition-all duration-300 ${isScrolled
+                            ? 'bg-bg-primary/70 backdrop-blur-xl border border-accent-primary/10 shadow-lg'
+                            : 'bg-transparent border border-transparent'
+                            }`}
+                    >
+                        <a href="#" className="font-bold text-xl tracking-tighter hover:opacity-80 transition-opacity text-accent-primary group">
+                            om<span className="text-indigo-500 group-hover:text-pink-500 transition-colors">.</span>
                         </a>
-                    </div>
 
-                    {/* Mobile Menu Button & Toggle */}
-                    <div className="flex items-center gap-2 md:hidden">
-                        <button
-                            onClick={toggleTheme}
-                            className="p-2 rounded-xl text-accent-primary"
-                        >
-                            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-                        </button>
-                        <button
-                            className="text-accent-primary p-2"
-                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        >
-                            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-                        </button>
-                    </div>
-                </motion.div>
-            </div>
+                        {/* Desktop Links */}
+                        <div className="hidden md:flex items-center gap-8">
+                            {navLinks.map((link) => (
+                                <a
+                                    key={link.name}
+                                    href={link.href}
+                                    className="relative text-xs font-medium text-secondary hover:text-accent-primary transition-colors uppercase tracking-widest group"
+                                >
+                                    {link.name}
+                                    <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-accent-primary transition-all duration-300 group-hover:w-full" />
+                                </a>
+                            ))}
+                        </div>
+
+                        {/* Theme Toggle & Hire me */}
+                        <div className="hidden md:flex items-center gap-4">
+                            <button
+                                onClick={toggleTheme}
+                                className="p-2 rounded-xl bg-accent-primary/5 hover:bg-accent-primary/10 transition-colors border border-accent-primary/5 text-accent-primary"
+                                aria-label="Toggle theme"
+                            >
+                                <AnimatePresence mode="wait">
+                                    <motion.div
+                                        key={theme}
+                                        initial={{ y: -20, opacity: 0, rotate: -90 }}
+                                        animate={{ y: 0, opacity: 1, rotate: 0 }}
+                                        exit={{ y: 20, opacity: 0, rotate: 90 }}
+                                        transition={{ duration: 0.2 }}
+                                    >
+                                        {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+                                    </motion.div>
+                                </AnimatePresence>
+                            </button>
+
+                            <a href="mailto:omkarrathod101050@gmail.com">
+                                <span className="text-xs font-bold uppercase tracking-widest px-5 py-2.5 bg-accent-primary text-bg-primary rounded-xl hover:opacity-90 hover:scale-105 active:scale-95 transition-all shadow-lg shadow-accent-primary/20">
+                                    Hire me
+                                </span>
+                            </a>
+                        </div>
+
+                        {/* Mobile Menu Button & Toggle */}
+                        <div className="flex items-center gap-2 md:hidden">
+                            <button
+                                onClick={toggleTheme}
+                                className="p-2 rounded-xl text-accent-primary bg-accent-primary/5"
+                            >
+                                {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+                            </button>
+                            <button
+                                className="text-accent-primary p-2 bg-accent-primary/5 rounded-xl ml-2"
+                                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            >
+                                {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                            </button>
+                        </div>
+                    </motion.div>
+                </div>
+            </nav>
 
             {/* Mobile Menu Overlay */}
             <AnimatePresence>
@@ -99,14 +105,14 @@ const Navbar = () => {
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
-                        className="md:hidden mt-4 mx-4 max-w-[700px] sm:mx-auto card-glass pointer-events-auto bg-bg-primary/95 backdrop-blur-xl border-accent-primary/10 shadow-2xl"
+                        className="fixed top-24 left-4 right-4 z-40 md:hidden bg-bg-secondary/95 backdrop-blur-2xl border border-accent-primary/10 shadow-2xl rounded-2xl overflow-hidden"
                     >
-                        <div className="flex flex-col p-4 sm:p-6 gap-4 sm:gap-6">
+                        <div className="flex flex-col p-4 gap-4">
                             {navLinks.map((link) => (
                                 <a
                                     key={link.name}
                                     href={link.href}
-                                    className="text-sm font-semibold text-secondary hover:text-accent-primary uppercase tracking-widest transition-colors"
+                                    className="text-sm font-semibold text-secondary hover:text-accent-primary hover:bg-accent-primary/5 px-4 py-3 rounded-xl uppercase tracking-widest transition-all"
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
                                     {link.name}
@@ -114,7 +120,7 @@ const Navbar = () => {
                             ))}
                             <a
                                 href="mailto:omkarrathod101050@gmail.com"
-                                className="w-full text-center text-[11px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest px-4 py-3 sm:py-4 bg-accent-primary text-bg-primary rounded-xl"
+                                className="w-full text-center text-[11px] font-bold uppercase tracking-widest px-4 py-4 bg-accent-primary text-bg-primary rounded-xl mt-2"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
                                 Hire me
@@ -123,9 +129,8 @@ const Navbar = () => {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </nav>
+        </>
     );
 };
 
 export default Navbar;
-

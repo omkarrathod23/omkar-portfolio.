@@ -1,142 +1,154 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
     Github,
     Linkedin,
     Mail,
-    Download,
-    MessageSquare
+    Twitter,
+    Link as LinkIcon,
+    Sun,
+    Moon,
+    GitCommit
 } from 'lucide-react';
 
 const Hero = () => {
-    return (
-        <section id="home" className="container pt-8 sm:pt-12 md:pt-16 pb-12 sm:pb-16 md:pb-24">
+    // Theme toggle logic (assuming simple class toggle on visual for now, 
+    // ideally this should sync with a global context if available, 
+    // but matching the requested component isolation)
+    const [isDark, setIsDark] = useState(true);
 
+    useEffect(() => {
+        // Check initial theme
+        if (document.documentElement.classList.contains('light')) {
+            setIsDark(false);
+        }
+    }, []);
+
+    const toggleTheme = () => {
+        const root = document.documentElement;
+        if (isDark) {
+            root.classList.add('light');
+            setIsDark(false);
+        } else {
+            root.classList.remove('light');
+            setIsDark(true);
+        }
+    };
+
+    return (
+        <section id="home" className="container pt-8 sm:pt-12 md:pt-16 pb-12 sm:pb-16 md:pb-24 flex justify-center">
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-accent-primary/5 bg-bg-secondary shadow-2xl"
+                className="relative w-full max-w-2xl bg-bg-secondary rounded-xl overflow-hidden shadow-2xl border border-white/5"
             >
                 {/* ================= Banner ================= */}
-                <div className="relative h-32 sm:h-40 md:h-56 w-full overflow-hidden">
-                    <motion.img
-                        initial={{ scale: 1.2 }}
-                        animate={{ scale: 1 }}
-                        transition={{ duration: 1.5, ease: "easeOut" }}
-                        src="/banner.jpg"
+                <div className="relative h-64 w-full overflow-hidden group">
+                    <img
+                        src="/banner.jpg" // Using existing asset
                         alt="banner"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-bg-secondary dark:to-bg-primary" />
+                    {/* Dark Overlay for text readability */}
+                    <div className="absolute inset-0 bg-black/40 transition-opacity group-hover:bg-black/30" />
 
-                    <div className="absolute top-5 right-5">
-                        <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-accent-primary/10 backdrop-blur-md border border-accent-primary/10">
-                            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.5)]" />
-                            <span className="text-[10px] font-bold uppercase tracking-widest text-accent-primary">Online</span>
-                        </div>
+                    {/* Quote */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
+                        <p className="font-serif italic text-white/90 text-lg sm:text-xl md:text-2xl max-w-md leading-relaxed">
+                            You make your own luck if you stay at it long enough.
+                        </p>
+                        <GitCommit className="text-white/80 mt-2" size={20} />
                     </div>
                 </div>
 
                 {/* ================= Content ================= */}
-                <div className="px-4 sm:px-6 md:px-10 pb-6 sm:pb-8 md:pb-12 -mt-8 sm:-mt-10 md:-mt-14 relative">
-                    {/* Profile image */}
-                    <motion.div
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        transition={{ delay: 0.2, duration: 0.5 }}
-                        className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden border-3 sm:border-4 border-bg-primary shadow-2xl ring-1 ring-accent-primary/10"
-                    >
-                        <img
-                            src="/profile.jpg"
-                            alt="Omkar Rathod"
-                            className="w-full h-full object-cover"
-                        />
-                    </motion.div>
+                <div className="px-6 pb-8 relative">
 
-                    {/* Text + actions */}
-                    <div className="mt-4 sm:mt-5 md:mt-6 flex flex-col md:flex-row md:items-end md:justify-between gap-4 sm:gap-6 md:gap-8">
-                        <div className="max-w-xl">
-                            <motion.h1
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: 0.3, duration: 0.5 }}
-                                className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight text-accent-primary"
+                    {/* Top Row: Profile & Github Stats */}
+                    <div className="flex justify-between items-start">
+                        {/* Profile Image - Overlapping */}
+                        <div className="-mt-16 sm:-mt-20 relative z-10">
+                            <motion.div
+                                initial={{ scale: 0.8, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                transition={{ delay: 0.2, duration: 0.5 }}
+                                className="w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden border-[6px] border-bg-secondary shadow-lg bg-bg-secondary"
                             >
+                                <img
+                                    src="/profile.jpg" // Using existing asset
+                                    alt="Profile"
+                                    className="w-full h-full object-cover"
+                                />
+                            </motion.div>
+                        </div>
+
+                        {/* Github Stats (Mocked or Real) */}
+                        <div className="mt-4 flex items-center gap-2 text-secondary hover:text-accent-primary transition-colors cursor-pointer">
+                            <Github size={18} />
+                            <span className="font-medium text-sm">81</span>
+                        </div>
+                    </div>
+
+                    {/* Name, Title, Socials Row */}
+                    <div className="mt-4 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+                        <div>
+                            <h1 className="text-3xl sm:text-4xl font-serif font-bold text-accent-primary tracking-tight">
                                 Omkar Rathod
-                            </motion.h1>
-
-                            <motion.p
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: 0.4, duration: 0.5 }}
-                                className="text-secondary mt-2 sm:mt-3 md:mt-4 leading-relaxed text-xs sm:text-sm md:text-base"
-                            >
-                                Java Full Stack Developer & AI/ML Engineer.
-                                Building scalable Spring Boot backends, modern React frontends,
-                                and intelligent data-driven systems.
-                            </motion.p>
+                            </h1>
+                            <p className="text-secondary font-medium mt-1">
+                                21 • engineer • developer • builder
+                            </p>
                         </div>
 
-                        <motion.a
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.5, duration: 0.5 }}
-                            href="/resume.pdf"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="btn-primary flex items-center justify-center gap-2 w-full md:w-fit text-xs sm:text-sm"
-                        >
-                            <Download size={16} />
-                            Download CV
-                        </motion.a>
-                    </div>
+                        {/* Social Icons & Actions */}
+                        <div className="flex items-center gap-3">
+                            <SocialLink href="https://github.com/omkarrathod23" icon={Github} />
+                            <SocialLink href="https://twitter.com" icon={Twitter} /> {/* Placeholder for X/Twitter */}
+                            <SocialLink href="mailto:omkarrathod101050@gmail.com" icon={Mail} />
+                            <SocialLink href="https://www.linkedin.com/in/omkar-rathod-a93467251/" icon={Linkedin} />
 
-                    {/* ================= Bottom Row ================= */}
-                    <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-accent-primary/5 flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6">
-                        <div className="flex flex-wrap gap-2 sm:gap-3">
-                            <a
-                                href="https://www.linkedin.com/in/omkar-rathod-a93467251/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="btn-secondary flex items-center gap-1.5 sm:gap-2 py-2 px-3 sm:px-4"
+                            {/* Theme Toggle */}
+                            <button
+                                onClick={toggleTheme}
+                                className="p-2 rounded-full hover:bg-white/10 text-secondary hover:text-accent-primary transition-all"
+                                aria-label="Toggle Theme"
                             >
-                                <MessageSquare size={14} className="flex-shrink-0" />
-                                <span className="text-[10px] sm:text-xs">Let's connect</span>
-                            </a>
-
-                            <a
-                                href="mailto:omkarrathod101050@gmail.com"
-                                className="btn-secondary flex items-center gap-1.5 sm:gap-2 py-2 px-3 sm:px-4"
-                            >
-                                <Mail size={14} className="flex-shrink-0" />
-                                <span className="text-[10px] sm:text-xs">Email me</span>
-                            </a>
-                        </div>
-
-                        <div className="flex items-center gap-2 sm:gap-3">
-                            {[
-                                { icon: Github, href: "https://github.com/omkarrathod23" },
-                                { icon: Linkedin, href: "https://www.linkedin.com/in/omkar-rathod-a93467251/" },
-                                { icon: Mail, href: "mailto:omkarrathod101050@gmail.com" }
-                            ].map((social, i) => (
-                                <motion.a
-                                    key={i}
-                                    whileHover={{ y: -2 }}
-                                    href={social.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="p-2 sm:p-2.5 bg-accent-primary/5 rounded-lg sm:rounded-xl hover:bg-accent-primary/10 transition-colors border border-accent-primary/5 text-secondary hover:text-accent-primary"
-                                >
-                                    <social.icon size={16} className="sm:w-[18px] sm:h-[18px]" />
-                                </motion.a>
-                            ))}
+                                {isDark ? <Sun size={20} /> : <Moon size={20} />}
+                            </button>
                         </div>
                     </div>
+
+                    {/* Divider */}
+                    <div className="h-px w-full bg-white/10 my-6" />
+
+                    {/* Bio / Description */}
+                    <div className="space-y-4">
+                        <p className="text-accent-primary text-base sm:text-lg leading-relaxed">
+                            <span className="font-bold">I build from zero.</span> Whether it's frontend, backend, full-stack applications, or AI-powered experiences, I work across the entire development lifecycle. From UI/UX to deployment to user feedback, I care less about technology debates and more about delivering results that solve real problems.
+                        </p>
+
+                        {/* Blur effect text (mocking the image style of 'more' content or footer) */}
+                        {/* <div className="text-secondary/50 text-sm blur-[2px] select-none">
+                            Read more about my journey and projects...
+                        </div> */}
+                    </div>
+
                 </div>
             </motion.div>
         </section>
     );
 };
+
+const SocialLink = ({ href, icon: Icon }) => (
+    <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="p-2 rounded-full hover:bg-white/10 text-secondary hover:text-accent-primary transition-all"
+    >
+        <Icon size={20} />
+    </a>
+);
 
 export default Hero;

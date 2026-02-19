@@ -44,46 +44,47 @@ const SkillCard = ({ skill, index }) => {
 
 const TechStack = () => {
     return (
-        <section id="skills" className="py-16 md:py-24">
+        <section id="skills" className="py-12 md:py-16">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
+                className="max-w-4xl mx-auto px-4 sm:px-6"
             >
-                <div className="mb-10 md:mb-14">
+                <div className="text-center mb-10 md:mb-12">
                     <motion.div
-                        className="flex items-center gap-3 mb-4"
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        className="flex items-center justify-center gap-2 mb-3"
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                     >
-                        <span className="text-accent-primary text-sm font-black uppercase tracking-[0.2em]">
+                        <Code2 className="text-accent-primary" size={20} />
+                        <span className="text-accent-primary text-sm font-bold uppercase tracking-widest">
                             Tech Stack
                         </span>
-                        <Code2 className="text-accent-primary" size={18} />
                     </motion.div>
 
                     <motion.h2
-                        className="text-4xl md:text-5xl font-black text-accent-primary mb-4 leading-tight"
-                        initial={{ opacity: 0, y: 20 }}
+                        className="text-2xl md:text-3xl font-bold text-accent-primary mb-3 tracking-tight"
+                        initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
+                        transition={{ delay: 0.1 }}
                     >
                         Technologies I Master
                     </motion.h2>
                     <motion.p
-                        className="text-secondary text-base md:text-lg max-w-2xl leading-relaxed"
-                        initial={{ opacity: 0, y: 20 }}
+                        className="text-secondary text-sm md:text-base max-w-lg mx-auto leading-relaxed"
+                        initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ delay: 0.3 }}
+                        transition={{ delay: 0.2 }}
                     >
-                        Building with modern frameworks, robust backends, and scalable infrastructure
+                        Building with modern frameworks, robust backends, and scalable infrastructure.
                     </motion.p>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-5 md:gap-6">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-5 justify-center">
                     {skills.map((skill, index) => (
                         <SkillCard key={skill.name} skill={skill} index={index} />
                     ))}

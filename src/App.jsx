@@ -1,21 +1,25 @@
 import React from 'react';
 import Layout from './components/layout/Layout';
 import Hero from './components/sections/Hero';
+import About from './components/sections/About';
+import TechStack from './components/sections/TechStack';
+import Education from './components/sections/Education';
 import Experience from './components/sections/Experience';
 import Projects from './components/sections/Projects';
 import Contact from './components/sections/Contact';
 import GithubContributions from './components/ui/GithubContributions';
-import TechStack from './components/sections/TechStack';
 
 function App() {
     return (
         <Layout>
-            <div className="flex flex-col gap-0 md:gap-4 w-full">
+            <div className="flex flex-col gap-0 w-full">
                 <Hero />
+                <About />
+                <TechStack />
+                <Education />
                 <Experience />
                 <Projects />
                 <GithubContributions />
-                <TechStack />
                 <Contact />
             </div>
         </Layout>

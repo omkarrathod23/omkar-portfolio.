@@ -1,72 +1,58 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-
-const skills = [
-    { name: 'Java', logo: 'https://cdn.simpleicons.org/openjdk' },
-    { name: 'Spring Boot', logo: 'https://cdn.simpleicons.org/springboot' },
-    { name: 'React', logo: 'https://cdn.simpleicons.org/react' },
-    { name: 'Next.js', logo: 'https://cdn.simpleicons.org/nextdotjs' },
-    { name: 'Node.js', logo: 'https://cdn.simpleicons.org/nodedotjs' },
-    { name: 'PostgreSQL', logo: 'https://cdn.simpleicons.org/postgresql' },
-    { name: 'MongoDB', logo: 'https://cdn.simpleicons.org/mongodb' },
-    { name: 'Docker', logo: 'https://cdn.simpleicons.org/docker' },
-    { name: 'AWS', logo: 'https://cdn.simpleicons.org/amazonaws' },
-    { name: 'TypeScript', logo: 'https://cdn.simpleicons.org/typescript' },
-    { name: 'Git', logo: 'https://cdn.simpleicons.org/git' },
-    { name: 'Linux', logo: 'https://cdn.simpleicons.org/linux' }
-];
-
-
-const SkillItem = ({ skill }) => (
-    <div className="flex items-center gap-3 px-5 py-3 bg-white/5 border border-white/10 rounded-xl backdrop-blur-md hover:bg-white/10 transition whitespace-nowrap">
-        <img
-            src={skill.logo}
-            alt={skill.name}
-            className="w-5 h-5"
-        />
-        <span className="text-sm font-medium text-white/80">
-            {skill.name}
-        </span>
-    </div>
-);
-
+import { User } from 'lucide-react';
 
 const About = () => {
     return (
-        <section className="container py-12 flex flex-col gap-10">
-
-            {/* ================= Skills Section ================= */}
+        <section id="about" className="py-12 md:py-16">
             <motion.div
-                initial={{ opacity: 0, y: 25 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="card-glass overflow-hidden flex flex-col gap-6 p-6"
+                className="max-w-4xl mx-auto px-4 sm:px-6"
             >
-                <h2 className="text-lg font-semibold">
-                    My <span className="text-secondary">Skills</span>
-                </h2>
-
-                {/* Marquee */}
-                <div className="relative overflow-hidden">
-
+                <div className="text-center mb-10 md:mb-12">
                     <motion.div
-                        animate={{ x: ['0%', '-50%'] }}
-                        transition={{
-                            repeat: Infinity,
-                            duration: 18,
-                            ease: 'linear'
-                        }}
-                        className="flex gap-4 w-max"
+                        className="flex items-center justify-center gap-2 mb-3"
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
                     >
-                        {/* duplicate skills for infinite loop */}
-                        {[...skills, ...skills].map((skill, index) => (
-                            <SkillItem key={index} skill={skill} />
-                        ))}
+                        <User className="text-accent-primary" size={20} />
+                        <span className="text-accent-primary text-sm font-bold uppercase tracking-widest">
+                            About Me
+                        </span>
                     </motion.div>
 
+                    <motion.h2
+                        className="text-2xl md:text-3xl font-bold text-white mb-6 tracking-tight"
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 }}
+                    >
+                        Passionate about AI & Full Stack
+                    </motion.h2>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 }}
+                        className="text-secondary text-sm md:text-base max-w-2xl mx-auto leading-relaxed space-y-4"
+                    >
+                        <p>
+                            I am a final-year Computer Science student specializing in Artificial Intelligence and Machine Learning.
+                            My passion lies in bridging the gap between intelligent algorithms and robust software engineering.
+                        </p>
+                        <p>
+                            With experience in full-stack development and a deep interest in robotics and automation,
+                            I enjoy building scalable applications that solve real-world problems.
+                            I am constanty learning and exploring new technologies to stay ahead in the rapidly evolving tech landscape.
+                        </p>
+                    </motion.div>
                 </div>
             </motion.div>
-
         </section>
     );
 };

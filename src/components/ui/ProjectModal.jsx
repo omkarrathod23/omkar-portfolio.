@@ -5,10 +5,8 @@ import { X, Github, ExternalLink, Calendar, Users, Star, Code, Zap, Award, Trend
 const ProjectModal = ({ project, isOpen, onClose, difficultyColors = {}, categoryColors = {} }) => {
     if (!project) return null;
 
-    const categoryColor = categoryColors[project.category] || { text: 'text-purple-400', border: 'border-purple-500/30' };
-
     const modalVariants = {
-        hidden: { opacity: 0, scale: 0.9, y: 50 },
+        hidden: { opacity: 0, scale: 0.95, y: 20 },
         visible: {
             opacity: 1,
             scale: 1,
@@ -16,14 +14,14 @@ const ProjectModal = ({ project, isOpen, onClose, difficultyColors = {}, categor
             transition: {
                 type: 'spring',
                 stiffness: 300,
-                damping: 25,
+                damping: 30,
                 staggerChildren: 0.1
             }
         },
         exit: {
             opacity: 0,
-            scale: 0.9,
-            y: 50,
+            scale: 0.95,
+            y: 20,
             transition: {
                 duration: 0.2
             }
@@ -36,23 +34,18 @@ const ProjectModal = ({ project, isOpen, onClose, difficultyColors = {}, categor
         exit: { opacity: 0 }
     };
 
-    const contentVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0 }
-    };
-
     return (
         <AnimatePresence>
             {isOpen && (
                 <>
-                    {/* Backdrop with Blur */}
+                    {/* Backdrop */}
                     <motion.div
                         variants={backdropVariants}
                         initial="hidden"
                         animate="visible"
                         exit="exit"
                         onClick={onClose}
-                        className="fixed inset-0 bg-black/90 backdrop-blur-xl z-50"
+                        className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50"
                     />
 
                     {/* Modal */}
@@ -63,221 +56,153 @@ const ProjectModal = ({ project, isOpen, onClose, difficultyColors = {}, categor
                             animate="visible"
                             exit="exit"
                             onClick={(e) => e.stopPropagation()}
-                            className="relative pointer-events-auto w-full max-w-5xl my-8"
+                            className="relative pointer-events-auto w-full max-w-4xl my-8 bg-[#0a0a0a] border border-white/10 rounded-2xl overflow-hidden shadow-2xl"
                         >
-                            {/* Animated gradient glow */}
-                            <div className={`absolute -inset-1 bg-gradient-to-r ${project.gradient} rounded-3xl blur-2xl opacity-30 animate-pulse`} />
+                            {/* Modal Header with Image */}
+                            <div className="relative h-64 md:h-80">
+                                <motion.img
+                                    initial={{ scale: 1.1 }}
+                                    animate={{ scale: 1 }}
+                                    transition={{ duration: 0.6 }}
+                                    src={project.image}
+                                    alt={project.title}
+                                    className="w-full h-full object-cover"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-black/50 to-transparent" />
 
-                            <div className="relative bg-bg-secondary/95 backdrop-blur-2xl border border-white/20 rounded-3xl overflow-hidden shadow-2xl">
-                                {/* Modal Header with Image */}
-                                <div className="relative h-72 md:h-96">
-                                    {/* Gradient overlay */}
-                                    <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-40 mix-blend-overlay z-10`} />
+                                {/* Close Button */}
+                                <button
+                                    onClick={onClose}
+                                    className="absolute top-4 right-4 p-2 bg-black/50 hover:bg-black/70 rounded-full text-white/80 hover:text-white transition-colors border border-white/10 backdrop-blur-md"
+                                >
+                                    <X size={20} />
+                                </button>
 
-                                    <motion.img
-                                        initial={{ scale: 1.2 }}
-                                        animate={{ scale: 1 }}
-                                        transition={{ duration: 0.6 }}
-                                        src={project.image}
-                                        alt={project.title}
-                                        className="w-full h-full object-cover"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-bg-secondary via-bg-secondary/70 to-transparent z-10" />
+                                {/* Badges */}
+                                <div className="absolute bottom-4 left-6 right-6 flex items-end justify-between">
+                                    <div className="flex flex-col gap-2">
+                                        <div className="flex flex-wrap gap-2">
+                                            <span className="px-3 py-1 text-xs font-bold uppercase tracking-wider bg-white/10 backdrop-blur-md text-white border border-white/10 rounded-md">
+                                                {project.category}
+                                            </span>
+                                            <span className={`px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-md border ${difficultyColors[project.difficulty]} bg-black/50 backdrop-blur-md`}>
+                                                {project.difficulty}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    {project.featured && (
+                                        <div className="flex items-center gap-1.5 px-3 py-1 bg-yellow-500/20 backdrop-blur-md border border-yellow-500/30 rounded-full text-yellow-400">
+                                            <Star size={12} className="fill-current" />
+                                            <span className="text-[10px] font-bold uppercase tracking-wider">Featured</span>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
 
-                                    {/* Close Button */}
-                                    <motion.button
-                                        whileHover={{ scale: 1.1, rotate: 90 }}
-                                        whileTap={{ scale: 0.9 }}
-                                        onClick={onClose}
-                                        className="absolute top-6 right-6 p-3 bg-black/60 hover:bg-black/80 rounded-full backdrop-blur-xl transition-all text-white z-20 border border-white/20 shadow-lg"
-                                    >
-                                        <X size={20} />
-                                    </motion.button>
+                            {/* Modal Content */}
+                            <div className="p-6 md:p-8 max-h-[calc(80vh-320px)] overflow-y-auto custom-scrollbar">
+                                <div className="flex flex-col md:flex-row gap-8 mb-8">
+                                    <div className="flex-1">
+                                        <h2 className="text-3xl font-bold text-white mb-4">
+                                            {project.title}
+                                        </h2>
+                                        <p className="text-secondary text-base leading-relaxed">
+                                            {project.description}
+                                        </p>
+                                    </div>
 
-                                    {/* Badges */}
-                                    <div className="absolute top-6 left-6 z-20 flex flex-wrap gap-2">
-                                        <motion.span
-                                            initial={{ opacity: 0, x: -20 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            className={`px-4 py-2 text-xs font-black uppercase tracking-widest bg-black/60 backdrop-blur-xl ${categoryColor.text} border ${categoryColor.border} rounded-full shadow-lg`}
-                                        >
-                                            {project.category}
-                                        </motion.span>
-
-                                        <motion.span
-                                            initial={{ opacity: 0, x: -20 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            transition={{ delay: 0.1 }}
-                                            className={`px-4 py-2 text-xs font-black uppercase tracking-widest rounded-full shadow-lg border ${difficultyColors[project.difficulty]}`}
-                                        >
-                                            {project.difficulty}
-                                        </motion.span>
-
-                                        {project.featured && (
-                                            <motion.div
-                                                initial={{ opacity: 0, scale: 0 }}
-                                                animate={{ opacity: 1, scale: 1 }}
-                                                transition={{ delay: 0.2, type: 'spring' }}
-                                                className="flex items-center gap-2 px-4 py-2 bg-yellow-500/20 backdrop-blur-xl border border-yellow-500/40 rounded-full shadow-lg shadow-yellow-500/30"
+                                    <div className="flex gap-3 flex-shrink-0 self-start">
+                                        {project.github && (
+                                            <a
+                                                href={project.github}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-white text-sm font-medium transition-colors"
                                             >
-                                                <Star size={14} className="text-yellow-400 fill-yellow-400" />
-                                                <span className="text-xs font-black uppercase tracking-widest text-yellow-400">
-                                                    Featured
-                                                </span>
-                                            </motion.div>
+                                                <Github size={18} />
+                                                <span>Source</span>
+                                            </a>
+                                        )}
+                                        {project.live && (
+                                            <a
+                                                href={project.live}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center gap-2 px-4 py-2 bg-white text-black hover:bg-gray-200 rounded-lg text-sm font-bold transition-colors"
+                                            >
+                                                <ExternalLink size={18} />
+                                                <span>Live Demo</span>
+                                            </a>
                                         )}
                                     </div>
                                 </div>
 
-                                {/* Modal Content */}
-                                <div className="p-8 md:p-10 max-h-[60vh] overflow-y-auto custom-scrollbar">
-                                    {/* Title and Actions */}
-                                    <motion.div
-                                        variants={contentVariants}
-                                        className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-8"
-                                    >
-                                        <div className="flex-1">
-                                            <h2 className={`text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r ${project.gradient} mb-4 leading-tight`}>
-                                                {project.title}
-                                            </h2>
-                                            <p className="text-secondary text-lg leading-relaxed">
-                                                {project.description}
-                                            </p>
+                                {/* Project Meta Info Grid */}
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 py-6 border-y border-white/5">
+                                    {[
+                                        { icon: Calendar, label: 'Date', value: project.date },
+                                        { icon: Users, label: 'Team', value: project.team },
+                                        { icon: Star, label: 'Stars', value: project.stars },
+                                        { icon: Code, label: 'Tech', value: `${project.tech.length} Used` }
+                                    ].map((meta, idx) => (
+                                        <div key={idx} className="flex items-center gap-3">
+                                            <div className="p-2 bg-white/5 rounded-lg text-secondary">
+                                                <meta.icon size={18} />
+                                            </div>
+                                            <div>
+                                                <div className="text-[10px] text-secondary uppercase tracking-wider font-semibold">{meta.label}</div>
+                                                <div className="text-sm font-bold text-white">{meta.value}</div>
+                                            </div>
                                         </div>
+                                    ))}
+                                </div>
 
-                                        <div className="flex gap-3 flex-shrink-0">
-                                            {project.github && (
-                                                <motion.a
-                                                    whileHover={{ scale: 1.05, y: -2 }}
-                                                    whileTap={{ scale: 0.95 }}
-                                                    href={project.github}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="flex items-center gap-2 px-5 py-3 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 rounded-xl text-white font-semibold transition-all shadow-lg"
-                                                >
-                                                    <Github size={20} />
-                                                    <span>Code</span>
-                                                </motion.a>
-                                            )}
-                                            {project.live && (
-                                                <motion.a
-                                                    whileHover={{ scale: 1.05, y: -2 }}
-                                                    whileTap={{ scale: 0.95 }}
-                                                    href={project.live}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className={`flex items-center gap-2 px-5 py-3 bg-gradient-to-r ${project.gradient} hover:shadow-lg hover:shadow-purple-500/30 rounded-xl text-white font-semibold transition-all shadow-lg`}
-                                                >
-                                                    <ExternalLink size={20} />
-                                                    <span>Live Demo</span>
-                                                </motion.a>
-                                            )}
-                                        </div>
-                                    </motion.div>
+                                {/* Full Description */}
+                                <div className="mb-8">
+                                    <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                                        <Zap size={18} className="text-purple-400" /> Project Overview
+                                    </h3>
+                                    <p className="text-secondary leading-relaxed">
+                                        {project.fullDescription}
+                                    </p>
+                                </div>
 
-                                    {/* Project Meta Info */}
-                                    <motion.div
-                                        variants={contentVariants}
-                                        className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8"
-                                    >
-                                        {[
-                                            { icon: Calendar, label: 'Date', value: project.date, gradient: 'from-blue-500 to-cyan-500' },
-                                            { icon: Users, label: 'Team', value: project.team, gradient: 'from-green-500 to-emerald-500' },
-                                            { icon: Star, label: 'Stars', value: project.stars, gradient: 'from-yellow-500 to-orange-500' },
-                                            { icon: Code, label: 'Technologies', value: project.tech.length, gradient: 'from-purple-500 to-pink-500' }
-                                        ].map((meta, idx) => (
-                                            <motion.div
-                                                key={idx}
-                                                initial={{ opacity: 0, y: 20 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                transition={{ delay: 0.1 * idx }}
-                                                whileHover={{ scale: 1.05, y: -2 }}
-                                                className="relative group"
-                                            >
-                                                <div className={`absolute -inset-0.5 bg-gradient-to-r ${meta.gradient} rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-300`} />
-                                                <div className="relative flex items-center gap-3 p-4 bg-white/5 backdrop-blur-xl rounded-xl border border-white/10">
-                                                    <meta.icon size={20} className={`text-transparent bg-clip-text bg-gradient-to-r ${meta.gradient}`} />
-                                                    <div>
-                                                        <div className="text-[10px] text-dim uppercase tracking-wider font-bold">{meta.label}</div>
-                                                        <div className={`text-base font-bold text-transparent bg-clip-text bg-gradient-to-r ${meta.gradient}`}>
-                                                            {meta.value}
-                                                        </div>
+                                {/* Metrics */}
+                                {project.metrics && (
+                                    <div className="mb-8">
+                                        <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                                            <TrendingUp size={18} className="text-green-400" /> Key Metrics
+                                        </h3>
+                                        <div className="grid grid-cols-3 gap-4">
+                                            {project.metrics.map((metric, idx) => (
+                                                <div key={idx} className="p-4 bg-white/5 rounded-xl border border-white/5 text-center">
+                                                    <div className="text-2xl font-bold text-white mb-1">
+                                                        {metric.value}
+                                                    </div>
+                                                    <div className="text-[10px] text-secondary uppercase tracking-wider font-medium">
+                                                        {metric.label}
                                                     </div>
                                                 </div>
-                                            </motion.div>
-                                        ))}
-                                    </motion.div>
-
-                                    {/* Divider */}
-                                    <div className={`h-[2px] bg-gradient-to-r ${project.gradient} opacity-20 mb-8 rounded-full`} />
-
-                                    {/* Full Description */}
-                                    <motion.div variants={contentVariants} className="mb-8">
-                                        <div className="flex items-center gap-3 mb-4">
-                                            <Zap size={24} className={`text-transparent bg-clip-text bg-gradient-to-r ${project.gradient}`} />
-                                            <h3 className="text-2xl font-bold text-white">About This Project</h3>
-                                        </div>
-                                        <p className="text-secondary leading-relaxed text-base">
-                                            {project.fullDescription}
-                                        </p>
-                                    </motion.div>
-
-                                    {/* Metrics */}
-                                    {project.metrics && (
-                                        <motion.div variants={contentVariants} className="mb-8">
-                                            <div className="flex items-center gap-3 mb-5">
-                                                <TrendingUp size={24} className={`text-transparent bg-clip-text bg-gradient-to-r ${project.gradient}`} />
-                                                <h3 className="text-2xl font-bold text-white">Key Metrics</h3>
-                                            </div>
-                                            <div className="grid grid-cols-3 gap-5">
-                                                {project.metrics.map((metric, idx) => (
-                                                    <motion.div
-                                                        key={idx}
-                                                        initial={{ opacity: 0, scale: 0.8 }}
-                                                        animate={{ opacity: 1, scale: 1 }}
-                                                        transition={{ delay: 0.1 * idx }}
-                                                        whileHover={{ scale: 1.05, y: -4 }}
-                                                        className="relative group"
-                                                    >
-                                                        <div className={`absolute -inset-0.5 bg-gradient-to-r ${project.gradient} rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-300`} />
-                                                        <div className="relative p-6 bg-white/5 backdrop-blur-xl rounded-xl border border-white/10 text-center">
-                                                            <div className={`text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r ${project.gradient} mb-2`}>
-                                                                {metric.value}
-                                                            </div>
-                                                            <div className="text-xs text-dim uppercase tracking-widest font-bold">
-                                                                {metric.label}
-                                                            </div>
-                                                        </div>
-                                                    </motion.div>
-                                                ))}
-                                            </div>
-                                        </motion.div>
-                                    )}
-
-                                    {/* Technologies */}
-                                    <motion.div variants={contentVariants}>
-                                        <div className="flex items-center gap-3 mb-5">
-                                            <Award size={24} className={`text-transparent bg-clip-text bg-gradient-to-r ${project.gradient}`} />
-                                            <h3 className="text-2xl font-bold text-white">Technologies Used</h3>
-                                        </div>
-                                        <div className="flex flex-wrap gap-3">
-                                            {project.tech.map((tech, idx) => (
-                                                <motion.span
-                                                    key={idx}
-                                                    initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                                                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                                                    transition={{ delay: 0.05 * idx, type: 'spring' }}
-                                                    whileHover={{ scale: 1.1, y: -4 }}
-                                                    className={`relative group px-5 py-2.5 bg-gradient-to-r ${project.gradient} bg-opacity-10 rounded-xl border-2 border-white/10 text-sm font-bold overflow-hidden`}
-                                                >
-                                                    <div className={`absolute inset-0 bg-gradient-to-r ${project.gradient} opacity-0 group-hover:opacity-20 transition-opacity`} />
-                                                    <span className={`relative text-transparent bg-clip-text bg-gradient-to-r ${project.gradient}`}>
-                                                        {tech}
-                                                    </span>
-                                                </motion.span>
                                             ))}
                                         </div>
-                                    </motion.div>
+                                    </div>
+                                )}
+
+                                {/* Technologies */}
+                                <div>
+                                    <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                                        <Award size={18} className="text-blue-400" /> Tech Stack
+                                    </h3>
+                                    <div className="flex flex-wrap gap-2">
+                                        {project.tech.map((tech, idx) => (
+                                            <span
+                                                key={idx}
+                                                className="px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/5 rounded-lg text-sm text-secondary hover:text-white transition-colors cursor-default"
+                                            >
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         </motion.div>

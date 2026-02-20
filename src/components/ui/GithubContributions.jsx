@@ -8,7 +8,7 @@ const GithubContributions = () => {
   const { theme } = useTheme();
 
   return (
-    <section id="github" className="py-12 md:py-16">
+    <section id="github" className="py-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

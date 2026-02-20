@@ -36,7 +36,7 @@ const Hero = () => {
     };
 
     return (
-        <section id="home" className="container pt-8 sm:pt-12 md:pt-16 pb-12 sm:pb-16 md:pb-24 flex justify-center">
+        <section id="home" className="container pt-8 sm:pt-10 md:pt-12 pb-8 sm:pb-10 md:pb-12 flex justify-center">
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}

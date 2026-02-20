@@ -1,12 +1,11 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Grid3x3, List, Filter, X, Sparkles, TrendingUp, Zap } from 'lucide-react';
+import { Grid3x3, List, Filter, X } from 'lucide-react';
 import ProjectCard from '../ui/ProjectCard';
 import ProjectModal from '../ui/ProjectModal';
 
 const Projects = () => {
     const [activeCategory, setActiveCategory] = useState('All');
-    const [searchQuery, setSearchQuery] = useState('');
     const [viewMode, setViewMode] = useState('grid');
     const [selectedProject, setSelectedProject] = useState(null);
 
@@ -14,13 +13,10 @@ const Projects = () => {
     const categoryColors = {
         'All': { bg: 'from-purple-500/20 to-pink-500/20', border: 'border-purple-500/30', text: 'text-purple-400', glow: 'shadow-purple-500/50' },
         'Full Stack': { bg: 'from-blue-500/20 to-cyan-500/20', border: 'border-blue-500/30', text: 'text-blue-400', glow: 'shadow-blue-500/50' },
-        'Web App': { bg: 'from-green-500/20 to-emerald-500/20', border: 'border-green-500/30', text: 'text-green-400', glow: 'shadow-green-500/50' },
-        'AI/ML': { bg: 'from-orange-500/20 to-red-500/20', border: 'border-orange-500/30', text: 'text-orange-400', glow: 'shadow-orange-500/50' },
-        'Portfolio': { bg: 'from-pink-500/20 to-rose-500/20', border: 'border-pink-500/30', text: 'text-pink-400', glow: 'shadow-pink-500/50' },
-        'Mobile': { bg: 'from-indigo-500/20 to-purple-500/20', border: 'border-indigo-500/30', text: 'text-indigo-400', glow: 'shadow-indigo-500/50' }
+        'AI/ML': { bg: 'from-orange-500/20 to-red-500/20', border: 'border-orange-500/30', text: 'text-orange-400', glow: 'shadow-orange-500/50' }
     };
 
-    const categories = ['All', 'Full Stack', 'Web App', 'AI/ML', 'Portfolio', 'Mobile'];
+    const categories = ['All', 'Full Stack', 'AI/ML'];
 
     const projects = [
         {
@@ -51,7 +47,7 @@ const Projects = () => {
             description: 'Modern e-commerce solution with advanced coupon management, order tracking, and integrated payment processing.',
             fullDescription: 'Full-featured e-commerce platform featuring a robust coupon management system for targeted promotions, real-time order tracking for customers, secure payment gateway integration, and a comprehensive admin dashboard. built with microservices architecture for scalability.',
             tech: ['Java', 'Spring', 'MySQL', 'React', 'Redux', 'Stripe API'],
-            category: 'Web App',
+            category: 'Full Stack',
             github: 'https://github.com/omkarrathod23',
             live: '#',
             image: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80',
@@ -73,7 +69,7 @@ const Projects = () => {
             description: 'Interactive portfolio website featuring AI/ML project showcases, GitHub contributions visualization, and dynamic content management.',
             fullDescription: 'Modern portfolio built with React and Vite, featuring smooth animations with Framer Motion, GitHub API integration for real-time contribution visualization, responsive design, and optimized performance with 95+ Lighthouse score.',
             tech: ['React', 'Vite', 'Tailwind CSS', 'Framer Motion', 'GitHub API'],
-            category: 'Portfolio',
+            category: 'Full Stack',
             github: 'https://github.com/omkarrathod23',
             live: '#',
             image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
@@ -115,13 +111,9 @@ const Projects = () => {
 
     const filteredProjects = useMemo(() => {
         return projects.filter(project => {
-            const matchesCategory = activeCategory === 'All' || project.category === activeCategory;
-            const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                project.tech.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()));
-            return matchesCategory && matchesSearch;
+            return activeCategory === 'All' || project.category === activeCategory;
         });
-    }, [activeCategory, searchQuery]);
+    }, [activeCategory]);
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -185,123 +177,94 @@ const Projects = () => {
                     </motion.p>
                 </div>
 
-                {/* Search and Filters */}
-                <div className="mb-10 space-y-6">
-                    {/* Search Bar */}
+                {/* Filters & View Toggle */}
+                <div className="mb-10 flex flex-col md:flex-row items-center justify-center gap-6">
+                    {/* Categories */}
                     <motion.div
-                        className="relative max-w-md mx-auto"
+                        className="flex flex-wrap justify-center gap-2"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.4 }}
                     >
-                        <div className="relative flex items-center">
-                            <Search className="absolute left-4 text-secondary z-10" size={18} />
-                            <input
-                                type="text"
-                                placeholder="Search projects..."
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                className="w-full pl-12 pr-10 py-3 bg-white/5 border border-white/10 rounded-full text-white placeholder:text-secondary/50 focus:outline-none focus:border-white/30 focus:bg-white/10 transition-all font-light text-sm"
-                            />
-                            {searchQuery && (
+                        {categories.map((category) => {
+                            const isActive = activeCategory === category;
+                            return (
                                 <button
-                                    onClick={() => setSearchQuery('')}
-                                    className="absolute right-3 p-1.5 text-secondary hover:text-white transition-all z-10"
+                                    key={category}
+                                    onClick={() => setActiveCategory(category)}
+                                    className={`relative px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${isActive
+                                            ? 'bg-white text-black shadow-lg shadow-white/10'
+                                            : 'bg-white/5 text-secondary hover:bg-white/10 hover:text-white border border-white/5'
+                                        }`}
                                 >
-                                    <X size={14} />
+                                    {category}
                                 </button>
-                            )}
-                        </div>
+                            );
+                        })}
                     </motion.div>
 
-                    {/* Controls Row: Filters & View Toggle */}
+                    {/* View Toggle */}
                     <motion.div
-                        className="flex flex-col md:flex-row items-center justify-center gap-4"
+                        className="flex items-center gap-1 bg-white/5 rounded-lg p-1 border border-white/10"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.5 }}
                     >
-                        {/* Categories */}
-                        <div className="flex flex-wrap justify-center gap-2">
-                            {categories.map((category) => {
-                                const isActive = activeCategory === category;
-                                return (
-                                    <button
-                                        key={category}
-                                        onClick={() => setActiveCategory(category)}
-                                        className={`relative px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200 border ${isActive
-                                            ? 'bg-white text-black border-white'
-                                            : 'bg-transparent text-secondary border-white/10 hover:border-white/30 hover:text-white'
-                                            }`}
-                                    >
-                                        {category}
-                                    </button>
-                                );
-                            })}
-                        </div>
-
-                        {/* View Toggle */}
-                        <div className="flex items-center gap-1 bg-white/5 rounded-lg p-1 border border-white/10 ml-0 md:ml-4">
-                            <button
-                                onClick={() => setViewMode('grid')}
-                                className={`p-1.5 rounded-md transition-all duration-200 ${viewMode === 'grid'
-                                    ? 'bg-white/10 text-white shadow-sm'
-                                    : 'text-secondary hover:text-white hover:bg-white/5'
-                                    }`}
-                                aria-label="Grid view"
-                            >
-                                <Grid3x3 size={16} />
-                            </button>
-                            <button
-                                onClick={() => setViewMode('list')}
-                                className={`p-1.5 rounded-md transition-all duration-200 ${viewMode === 'list'
-                                    ? 'bg-white/10 text-white shadow-sm'
-                                    : 'text-secondary hover:text-white hover:bg-white/5'
-                                    }`}
-                                aria-label="List view"
-                            >
-                                <List size={16} />
-                            </button>
-                        </div>
+                        <button
+                            onClick={() => setViewMode('grid')}
+                            className={`p-2 rounded-md transition-all duration-200 ${viewMode === 'grid'
+                                ? 'bg-white/10 text-white shadow-sm'
+                                : 'text-secondary hover:text-white hover:bg-white/5'
+                                }`}
+                            aria-label="Grid view"
+                        >
+                            <Grid3x3 size={18} />
+                        </button>
+                        <button
+                            onClick={() => setViewMode('list')}
+                            className={`p-2 rounded-md transition-all duration-200 ${viewMode === 'list'
+                                ? 'bg-white/10 text-white shadow-sm'
+                                : 'text-secondary hover:text-white hover:bg-white/5'
+                                }`}
+                            aria-label="List view"
+                        >
+                            <List size={18} />
+                        </button>
                     </motion.div>
-
-                    {/* Active Filters Display */}
-                    <AnimatePresence>
-                        {(searchQuery || activeCategory !== 'All') && (
-                            <motion.div
-                                initial={{ opacity: 0, height: 0 }}
-                                animate={{ opacity: 1, height: 'auto' }}
-                                exit={{ opacity: 0, height: 0 }}
-                                className="flex justify-center"
-                            >
-                                <div className="flex items-center gap-3 text-xs bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg px-4 py-2">
-                                    <Filter size={14} className="text-purple-400" />
-                                    <span className="text-secondary">
-                                        Found <span className="text-white font-semibold">{filteredProjects.length}</span> projects
-                                    </span>
-                                    <button
-                                        onClick={() => {
-                                            setSearchQuery('');
-                                            setActiveCategory('All');
-                                        }}
-                                        className="ml-2 text-purple-400 hover:text-purple-300 font-medium hover:underline transition-colors flex items-center gap-1"
-                                    >
-                                        <X size={12} />
-                                        Clear
-                                    </button>
-                                </div>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
                 </div>
+
+                {/* Active Filter Display (if not 'All') */}
+                <AnimatePresence>
+                    {activeCategory !== 'All' && (
+                        <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="flex justify-center mb-8"
+                        >
+                            <div className="flex items-center gap-2 text-xs bg-white/5 border border-white/10 rounded-full px-4 py-1.5">
+                                <Filter size={12} className="text-purple-400" />
+                                <span className="text-secondary">
+                                    Showing <span className="text-white font-medium">{filteredProjects.length}</span> {activeCategory} projects
+                                </span>
+                                <button
+                                    onClick={() => setActiveCategory('All')}
+                                    className="ml-2 text-purple-400 hover:text-white transition-colors"
+                                >
+                                    <X size={12} />
+                                </button>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
 
                 {/* Projects Grid/List */}
                 <AnimatePresence mode="wait">
                     {filteredProjects.length > 0 ? (
                         <motion.div
-                            key={viewMode + activeCategory + searchQuery}
+                            key={viewMode + activeCategory}
                             variants={containerVariants}
                             initial="hidden"
                             animate="visible"
@@ -337,18 +300,12 @@ const Projects = () => {
                             exit={{ opacity: 0, scale: 0.95 }}
                             className="text-center py-20"
                         >
-                            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center border border-purple-500/30">
-                                <Search className="text-purple-400" size={28} />
-                            </div>
-                            <h3 className="text-xl font-bold text-white mb-2">No projects found</h3>
+                            <p className="text-secondary text-lg">No projects found in this category.</p>
                             <button
-                                onClick={() => {
-                                    setSearchQuery('');
-                                    setActiveCategory('All');
-                                }}
-                                className="px-6 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg font-medium transition-all"
+                                onClick={() => setActiveCategory('All')}
+                                className="mt-4 px-6 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg font-medium transition-all"
                             >
-                                Clear filters
+                                View All Projects
                             </button>
                         </motion.div>
                     )}

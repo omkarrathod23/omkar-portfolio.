@@ -1,11 +1,27 @@
 import React from 'react';
 import Navbar from './Navbar';
+import RobotAssistant from '../ui/RobotAssistant';
+import { useTheme } from '../../context/ThemeContext';
 
 const Layout = ({ children }) => {
+    const { theme } = useTheme();
+
     return (
-        <div className="relative min-h-screen bg-bg-primary text-accent-primary overflow-x-hidden transition-colors duration-300">
+        <div className="relative min-h-screen text-accent-primary overflow-x-hidden transition-colors duration-300">
+            {/* Global Robot Assistant */}
+            <RobotAssistant />
 
             {/* ================= Premium Background ================= */}
+            {theme === 'dark' && (
+                <div className="fixed inset-0 z-0">
+                    <div
+                        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-80 animate-subtle-float"
+                        style={{ backgroundImage: "url('/background.jpg')" }}
+                    ></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-bg-primary/80 via-bg-primary/20 to-transparent"></div>
+                </div>
+            )}
+
             {/* ================= Premium Animated Background ================= */}
 
 

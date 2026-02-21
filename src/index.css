@@ -47,18 +47,25 @@
   }
 
   body {
-    @apply bg-bg-primary text-accent-primary font-sans antialiased overflow-x-hidden;
-    line-height: 1.6;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-display font-bold tracking-tight;
+    html,
+    body,
+    #root {
+      @apply text-accent-primary font-sans antialiased overflow-x-hidden;
+      min-height: 100vh;
+      background-color: var(--bg-primary);
+      line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      @apply font-display font-bold tracking-tight;
+    }
   }
 }
 
@@ -125,6 +132,87 @@
   }
 }
 
+/* ===================== TECH STACK SECTION ===================== */
+
+/* -- Section header label & icon -- */
+.section-label {
+  color: #64748b;
+  /* slate-500, visible in both modes */
+}
+
+.section-icon {
+  color: #6366f1;
+  /* indigo, looks great on both */
+}
+
+/* -- Skill pills (dark mode default) -- */
+.skill-pill {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.skill-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+.skill-pill-text {
+  color: #e2e8f0;
+  /* light slate, clearly visible on dark bg */
+}
+
+/* -- Light mode overrides for pills -- */
+:root.light .skill-pill {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+
+:root.light .skill-pill:hover {
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.18);
+}
+
+:root.light .skill-pill-text {
+  color: #1e293b;
+  /* dark slate, perfectly readable on white */
+}
+
+/* -- Strip container (dark) -- */
+.tech-strip {
+  background: rgba(255, 255, 255, 0.02);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* -- Strip container (light) -- */
+:root.light .tech-strip {
+  background: rgba(99, 102, 241, 0.04);
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* -- Gradient fade masks (dark) -- */
+.tech-mask-left {
+  background: linear-gradient(to right, #050505, transparent);
+}
+
+.tech-mask-right {
+  background: linear-gradient(to left, #050505, transparent);
+}
+
+/* -- Gradient fade masks (light) -- */
+:root.light .tech-mask-left {
+  background: linear-gradient(to right, #ffffff, transparent);
+}
+
+:root.light .tech-mask-right {
+  background: linear-gradient(to left, #ffffff, transparent);
+}
+
+/* ============================================================= */
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
@@ -182,4 +270,22 @@
 
 .animation-delay-4000 {
   animation-delay: 4s;
+}
+
+@keyframes subtle-float {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+
+  50% {
+    transform: scale(1.05) translate(-1%, -1%);
+  }
+
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+}
+
+.animate-subtle-float {
+  animation: subtle-float 20s ease-in-out infinite;
 }

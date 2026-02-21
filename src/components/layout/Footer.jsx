@@ -5,7 +5,10 @@ const Footer = () => {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="py-8 sm:py-12 border-t border-white/[0.05] mt-12 sm:mt-16 lg:mt-24">
+        <footer
+            data-robot-msg="You've reached the bottom"
+            className="py-8 sm:py-12 border-t border-white/[0.05] mt-12 sm:mt-16 lg:mt-24"
+        >
             <div className="container">
 
                 <div className="flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8">
@@ -32,6 +35,7 @@ const Footer = () => {
                             href="https://github.com/omkarrathod23"
                             target="_blank"
                             rel="noopener noreferrer"
+                            data-robot-msg="Check out my code"
                             className="text-dim hover:text-white transition-colors flex items-center gap-2 group"
                         >
                             <Github size={18} />
@@ -46,6 +50,7 @@ const Footer = () => {
                             href="https://www.linkedin.com/in/omkar-rathod-a93467251/"
                             target="_blank"
                             rel="noopener noreferrer"
+                            data-robot-msg="Let's connect on LinkedIn"
                             className="text-dim hover:text-white transition-colors flex items-center gap-2 group"
                         >
                             <Linkedin size={18} />
@@ -58,6 +63,7 @@ const Footer = () => {
                         {/* Email */}
                         <a
                             href="mailto:omkarrathod101050@gmail.com"
+                            data-robot-msg="Send me an email"
                             className="text-dim hover:text-white transition-colors flex items-center gap-2 group"
                         >
                             <Mail size={18} />

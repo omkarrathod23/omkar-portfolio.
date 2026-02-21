@@ -1,137 +1,168 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Github, Linkedin, MessageCircle } from 'lucide-react';
 
 const Contact = () => {
+    const [hoveredMethod, setHoveredMethod] = useState(null);
+
     const contactMethods = [
         {
+            id: 'email',
             icon: Mail,
             label: 'Email',
             value: 'omkarrathod101050@gmail.com',
-            href: 'mailto:omkarrathod101050@gmail.com'
+            href: 'mailto:omkarrathod101050@gmail.com',
+            description: 'Send me an email for any inquiries or collaboration requests.',
+            robotMsg: 'Drop me a message'
         },
         {
+            id: 'linkedin',
             icon: Linkedin,
             label: 'LinkedIn',
             value: '/omkar-rathod',
-            href: 'https://www.linkedin.com/in/omkar-rathod-a93467251/'
+            href: 'https://www.linkedin.com/in/omkar-rathod-a93467251/',
+            description: 'Connect with me on LinkedIn to see my professional background.',
+            preview: '/previews/linkedin.png',
+            robotMsg: 'Let\'s connect'
         },
         {
+            id: 'github',
             icon: Github,
             label: 'GitHub',
             value: '@omkarrathod23',
-            href: 'https://github.com/omkarrathod23'
+            href: 'https://github.com/omkarrathod23',
+            description: 'Check out my latest projects and contributions on GitHub.',
+            preview: '/previews/github.png',
+            robotMsg: 'Check out my code'
         }
     ];
 
     return (
-        <footer id="contact" className="py-12 md:py-16">
+        <footer
+            id="contact"
+            className="py-12 md:py-20 relative overflow-hidden bg-black/20"
+        >
+            {/* Background elements */}
+            <div className="absolute inset-0 z-0 pointer-events-none opacity-10">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)]" />
+            </div>
+
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="max-w-3xl mx-auto px-4 sm:px-6"
+                className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10"
             >
-                <div className="text-center mb-10 md:mb-12">
-                    <motion.div
-                        className="flex items-center justify-center gap-2 mb-3"
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <MessageCircle className="text-accent-primary" size={20} />
-                        <span className="text-accent-primary text-sm font-bold uppercase tracking-widest">
-                            Contact
-                        </span>
-                    </motion.div>
+                {/* Minimalist Signature Block */}
+                <div className="flex flex-col md:flex-row items-center justify-between gap-10 p-8 md:p-12 rounded-[2.5rem] bg-bg-secondary/40 backdrop-blur-xl border border-white/5 shadow-2xl relative overflow-visible group">
+                    {/* Decorative side accent */}
+                    <div className="absolute left-0 top-1/4 bottom-1/4 w-1 bg-accent-primary/20 rounded-r-full group-hover:bg-accent-primary/50 transition-colors duration-500" />
 
-                    <motion.h2
-                        className="text-2xl md:text-3xl font-bold text-accent-primary mb-3 tracking-tight"
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                    >
-                        Let's Build Together
-                    </motion.h2>
-                    <motion.p
-                        className="text-secondary text-sm md:text-base max-w-lg mx-auto leading-relaxed"
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                    >
-                        Have a project in mind? Let's collaborate and create something amazing together.
-                    </motion.p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                    {contactMethods.map((method, idx) => (
-                        <motion.a
-                            key={idx}
-                            href={method.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
+                    <div className="flex-1 text-center md:text-left">
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: 0.3 + idx * 0.1 }}
-                            whileHover={{ y: -4 }}
-                            className="p-5 bg-bg-secondary hover:bg-accent-primary/5 border border-accent-primary/10 hover:border-accent-primary/20 rounded-xl transition-all flex flex-col items-center text-center"
+                            className="flex items-center justify-center md:justify-start gap-2 mb-4"
+                            data-robot-msg="Get in touch"
                         >
-                            <div className="w-10 h-10 mb-3 rounded-lg bg-accent-primary/10 flex items-center justify-center border border-accent-primary/20">
-                                <method.icon size={18} className="text-accent-primary" />
+                            <span className="w-8 h-[1px] bg-accent-primary scale-x-100 group-hover:scale-x-150 origin-left transition-transform duration-700" />
+                            <span className="text-accent-primary text-[10px] font-black uppercase tracking-[0.4em]">Let's Connect</span>
+                        </motion.div>
+
+                        <h2
+                            className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4 tracking-tighter leading-none"
+                            data-robot-msg="Let's build something great"
+                        >
+                            Let's Build <span className="text-accent-primary">Together.</span>
+                        </h2>
+                        <p
+                            className="text-white/40 text-sm md:text-base font-medium max-w-sm"
+                            data-robot-msg="Open for collaboration"
+                        >
+                            I'm always open to new opportunities and interesting projects.
+                        </p>
+                    </div>
+
+                    <div className="flex flex-col gap-4 w-full md:w-auto">
+                        {contactMethods.map((method, idx) => (
+                            <div key={method.id} className="relative group/pill">
+                                <motion.a
+                                    href={method.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    data-robot-msg={method.robotMsg}
+                                    onMouseEnter={() => setHoveredMethod(method.id)}
+                                    onMouseLeave={() => setHoveredMethod(null)}
+                                    className="flex items-center justify-between gap-4 px-6 py-4 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/10 transition-all duration-300 group/link"
+                                >
+                                    <div className="flex items-center gap-4">
+                                        <div className="p-2 rounded-lg bg-accent-primary/10 text-accent-primary group-hover/link:bg-accent-primary group-hover/link:text-black transition-all duration-300">
+                                            <method.icon size={18} />
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <span className="text-xs font-black text-white/50 group-hover/link:text-white/80 transition-colors">{method.label}</span>
+                                            <span className="text-[10px] font-medium text-white/30 truncate max-w-[120px]">{method.value}</span>
+                                        </div>
+                                    </div>
+                                    <div className="w-8 h-8 flex items-center justify-center rounded-full bg-white/5 group-hover/link:translate-x-1 transition-transform">
+                                        <div className="w-1.5 h-1.5 border-t-2 border-r-2 border-white/20 group-hover/link:border-accent-primary rotate-45" />
+                                    </div>
+                                </motion.a>
+
+                                {/* Floating Hover Preview (Outside the pill) */}
+                                <AnimatePresence>
+                                    {hoveredMethod === method.id && method.preview && (
+                                        <motion.div
+                                            initial={{ opacity: 0, x: -20, scale: 0.95 }}
+                                            animate={{ opacity: 1, x: 0, scale: 1 }}
+                                            exit={{ opacity: 0, x: -10, scale: 0.95 }}
+                                            transition={{
+                                                type: "spring",
+                                                stiffness: 400,
+                                                damping: 25
+                                            }}
+                                            className="absolute right-[112%] top-1/2 -translate-y-1/2 z-[1000] pointer-events-none hidden lg:block w-[450px] max-h-[300px] rounded-xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)] bg-transparent"
+                                        >
+                                            <img
+                                                src={method.preview}
+                                                alt={`${method.label} Preview`}
+                                                className="w-full h-full object-contain opacity-100"
+                                            />
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
                             </div>
-                            <h3 className="text-sm font-bold text-accent-primary mb-1">{method.label}</h3>
-                            <p className="text-xs text-secondary font-semibold">{method.value}</p>
-                        </motion.a>
-                    ))}
+                        ))}
+                    </div>
                 </div>
 
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4 }}
-                    className="p-8 bg-bg-secondary border border-accent-primary/10 rounded-2xl text-center"
-                >
-                    <h3 className="text-xl md:text-2xl font-bold text-accent-primary mb-3">
-                        Interested in Collaborating?
-                    </h3>
-                    <p className="text-secondary max-w-lg mx-auto text-sm leading-relaxed mb-6">
-                        I'm currently open to new opportunities and interesting projects.
-                    </p>
-
-                    <a
-                        href="mailto:omkarrathod101050@gmail.com"
-                        className="btn-primary inline-flex items-center gap-2 px-6 py-2.5 text-sm"
+                {/* Refined Footer Bottom */}
+                <div className="mt-12 flex flex-col md:flex-row justify-between items-center gap-6 opacity-30 group-hover:opacity-60 transition-opacity duration-1000">
+                    <div
+                        className="flex items-center gap-3 text-[10px] font-bold"
+                        data-robot-msg="© 2026 Omkar Rathod"
                     >
-                        <Mail size={16} />
-                        Get in Touch
-                    </a>
-                </motion.div>
+                        <span className="text-white uppercase tracking-widest">© {new Date().getFullYear()} Omkar Rathod</span>
+                        <div className="w-1 h-1 rounded-full bg-accent-primary" />
+                        <span className="text-white uppercase tracking-widest" data-robot-msg="Digital Craftsman">Digital Craftsman</span>
+                    </div>
 
-                <div className="mt-12 pt-8 border-t border-accent-primary/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
-                    <motion.div
-                        className="flex items-center gap-2"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                    >
-                        <div className="flex items-center gap-2 px-3 py-1.5 bg-accent-primary/5 border border-accent-primary/10 rounded-full">
-                            <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-                            <span className="font-bold uppercase tracking-widest text-accent-primary">Available</span>
+                    <div className="flex items-center gap-6">
+                        <div
+                            data-robot-msg="I am looking for new challenges"
+                            className="text-[9px] font-black uppercase tracking-[0.2em] text-white flex items-center gap-2"
+                        >
+                            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                            Available for New Projects
                         </div>
-                    </motion.div>
-
-                    <motion.div
-                        className="text-secondary font-semibold"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                    >
-                        Made with <span className="text-red-400">♥</span> by Omkar Rathod
-                    </motion.div>
+                        <div
+                            className="text-[10px] font-medium text-white"
+                            data-robot-msg="People love this site"
+                        >
+                            2,267 unique views
+                        </div>
+                    </div>
                 </div>
             </motion.div>
         </footer>

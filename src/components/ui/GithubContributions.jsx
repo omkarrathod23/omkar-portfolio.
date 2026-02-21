@@ -21,6 +21,7 @@ const GithubContributions = () => {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            data-robot-msg="My GitHub activity"
           >
             <Github className="text-accent-primary" size={20} />
             <span className="text-accent-primary text-sm font-bold uppercase tracking-widest">
@@ -54,6 +55,7 @@ const GithubContributions = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
           className="p-6 md:p-8 bg-bg-secondary border border-accent-primary/5 rounded-2xl overflow-hidden flex justify-center"
+          data-robot-msg="Building in public"
         >
           <div className="w-full overflow-x-auto flex justify-center">
             <GitHubCalendar

@@ -34,7 +34,7 @@ const Navbar = () => {
                             : 'bg-transparent border border-transparent'
                             }`}
                     >
-                        <a href="#" className="font-bold text-xl tracking-tighter hover:opacity-80 transition-opacity text-accent-primary group">
+                        <a href="#" data-robot-msg="Back to top" className="font-bold text-xl tracking-tighter hover:opacity-80 transition-opacity text-accent-primary group">
                             om<span className="text-indigo-500 group-hover:text-pink-500 transition-colors">.</span>
                         </a>
 
@@ -44,6 +44,7 @@ const Navbar = () => {
                                 <a
                                     key={link.name}
                                     href={link.href}
+                                    data-robot-msg={`Go to ${link.name}`}
                                     className="relative text-xs font-medium text-secondary hover:text-accent-primary transition-colors uppercase tracking-widest group"
                                 >
                                     {link.name}
@@ -56,6 +57,7 @@ const Navbar = () => {
                         <div className="hidden md:flex items-center gap-4">
                             <button
                                 onClick={toggleTheme}
+                                data-robot-msg="Switch the vibe"
                                 className="p-2 rounded-xl bg-accent-primary/5 hover:bg-accent-primary/10 transition-colors border border-accent-primary/5 text-accent-primary"
                                 aria-label="Toggle theme"
                             >
@@ -72,7 +74,7 @@ const Navbar = () => {
                                 </AnimatePresence>
                             </button>
 
-                            <a href="mailto:omkarrathod101050@gmail.com">
+                            <a href="mailto:omkarrathod101050@gmail.com" data-robot-msg="Let's build together">
                                 <span className="text-xs font-bold uppercase tracking-widest px-5 py-2.5 bg-accent-primary text-bg-primary rounded-xl hover:opacity-90 hover:scale-105 active:scale-95 transition-all shadow-lg shadow-accent-primary/20">
                                     Hire me
                                 </span>

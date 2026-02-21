@@ -21,21 +21,21 @@ const Projects = () => {
     const projects = [
         {
             id: 1,
-            title: 'Smart Vendor Reconciliation',
-            description: 'A comprehensive platform for automated vendor billing, onboarding, and payment reconciliation with role-based dashboards.',
-            fullDescription: 'Enterprise-grade reconciliation platform built with Spring Boot and React. Features include automated invoice matching, streamlined vendor onboarding with document verification, real-time payment tracking, role-based access control (RBAC), and comprehensive audit trails. Implements JWT authentication, PostgreSQL database, and RESTful API design patterns.',
-            tech: ['Spring Boot', 'React', 'PostgreSQL', 'JWT', 'REST API', 'Redux'],
+            title: 'AI-Powered Multi-Tenant SaaS Platform',
+            description: 'Enterprise-grade vendor billing and payment reconciliation platform with JWT-secured APIs and automated invoice-to-payment matching.',
+            fullDescription: 'Built an enterprise-grade vendor billing and payment reconciliation platform with JWT-secured APIs, automated invoice-to-payment matching, and dispute workflows to reduce manual accounting effort and improve reconciliation accuracy.',
+            tech: ['Java', 'Spring Boot', 'React', 'TypeScript', 'PostgreSQL'],
             category: 'Full Stack',
             github: 'https://github.com/omkarrathod23',
             live: '#',
             image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
             metrics: [
-                { value: '100%', label: 'Accurate' },
-                { value: '4+', label: 'Roles' },
-                { value: 'Real-time', label: 'Updates' }
+                { value: '100%', label: 'Accuracy' },
+                { value: 'Multi-tenant', label: 'Architecture' },
+                { value: 'Automated', label: 'Workflows' }
             ],
             featured: true,
-            date: '2026-01',
+            date: '2026-02',
             team: 'Solo',
             stars: 45,
             difficulty: 'Advanced',
@@ -43,18 +43,40 @@ const Projects = () => {
         },
         {
             id: 2,
-            title: 'E-Commerce Platform',
-            description: 'Modern e-commerce solution with advanced coupon management, order tracking, and integrated payment processing.',
-            fullDescription: 'Full-featured e-commerce platform featuring a robust coupon management system for targeted promotions, real-time order tracking for customers, secure payment gateway integration, and a comprehensive admin dashboard. built with microservices architecture for scalability.',
-            tech: ['Java', 'Spring', 'MySQL', 'React', 'Redux', 'Stripe API'],
+            title: 'SmartReconcil – Vendor Billing Platform',
+            description: 'Scalable billing and reconciliation system with FIFO and exact-match engines, secure REST APIs, and automated workflows.',
+            fullDescription: 'Developed a scalable billing and reconciliation system with FIFO and exact-match engines, secure REST APIs, and automated workflows for streamlined vendor payment processing.',
+            tech: ['Java', 'Spring Boot', 'Next.js', 'PostgreSQL'],
+            category: 'Full Stack',
+            github: 'https://github.com/omkarrathod23',
+            live: '#',
+            image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
+            metrics: [
+                { value: 'FIFO', label: 'Engine' },
+                { value: 'Secure', label: 'REST APIs' },
+                { value: 'Scalable', label: 'System' }
+            ],
+            featured: false,
+            date: '2026-01',
+            team: 'Solo',
+            stars: 38,
+            difficulty: 'Advanced',
+            gradient: 'from-blue-500 via-indigo-500 to-violet-500'
+        },
+        {
+            id: 3,
+            title: 'Shofy – E-Commerce Web Application',
+            description: 'Production-ready e-commerce platform with product listing, filtering, cart, authentication, and cloud deployment.',
+            fullDescription: 'Built a production-ready e-commerce platform with product listing, filtering, cart, authentication, REST API integration, and cloud deployment.',
+            tech: ['Next.js', 'React', 'Node.js', 'Express', 'MongoDB'],
             category: 'Full Stack',
             github: 'https://github.com/omkarrathod23',
             live: '#',
             image: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80',
             metrics: [
-                { value: '1000+', label: 'Products' },
-                { value: '50ms', label: 'Response' },
-                { value: 'Secure', label: 'Payments' }
+                { value: 'Full', label: 'Features' },
+                { value: 'Cloud', label: 'Native' },
+                { value: 'Secure', label: 'Auth' }
             ],
             featured: false,
             date: '2025-12',
@@ -64,48 +86,70 @@ const Projects = () => {
             gradient: 'from-green-600 via-emerald-600 to-teal-600'
         },
         {
-            id: 3,
-            title: 'AI-Powered Portfolio',
-            description: 'Interactive portfolio website featuring AI/ML project showcases, GitHub contributions visualization, and dynamic content management.',
-            fullDescription: 'Modern portfolio built with React and Vite, featuring smooth animations with Framer Motion, GitHub API integration for real-time contribution visualization, responsive design, and optimized performance with 95+ Lighthouse score.',
-            tech: ['React', 'Vite', 'Tailwind CSS', 'Framer Motion', 'GitHub API'],
-            category: 'Full Stack',
-            github: 'https://github.com/omkarrathod23',
-            live: '#',
-            image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
-            metrics: [
-                { value: '95+', label: 'Lighthouse' },
-                { value: 'Modern', label: 'Design' },
-                { value: 'Fast', label: 'Loading' }
-            ],
-            featured: true,
-            date: '2026-02',
-            team: 'Solo',
-            stars: 28,
-            difficulty: 'Intermediate',
-            gradient: 'from-pink-600 via-purple-600 to-indigo-600'
-        },
-        {
             id: 4,
-            title: 'Sentiment Analysis Dashboard',
-            description: 'Real-time sentiment analysis tool using NLP and machine learning to analyze social media trends and customer feedback.',
-            fullDescription: 'Machine learning-powered dashboard for analyzing sentiment in text data. Utilizes NLP libraries, implements custom ML models for emotion detection, provides real-time analytics, and features interactive data visualizations.',
-            tech: ['Python', 'TensorFlow', 'React', 'D3.js', 'FastAPI', 'MongoDB'],
+            title: 'Customer Churn Prediction System',
+            description: 'XGBoost-based churn prediction model achieving 66.49% accuracy with interactive real-time prediction dashboard.',
+            fullDescription: 'Created an XGBoost-based churn prediction model achieving 66.49% accuracy with feature engineering, data preprocessing, and an interactive real-time prediction dashboard.',
+            tech: ['Python', 'XGBoost', 'Streamlit', 'ML'],
             category: 'AI/ML',
             github: 'https://github.com/omkarrathod23',
             live: '#',
             image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
             metrics: [
-                { value: '92%', label: 'Accuracy' },
-                { value: '1M+', label: 'Records' },
-                { value: 'Live', label: 'Analysis' }
+                { value: '66.49%', label: 'Accuracy' },
+                { value: 'Real-time', label: 'Insights' },
+                { value: 'Interactive', label: 'Dashboard' }
+            ],
+            featured: true,
+            date: '2025-11',
+            team: 'Solo',
+            stars: 42,
+            difficulty: 'Advanced',
+            gradient: 'from-orange-500 via-red-500 to-pink-500'
+        },
+        {
+            id: 5,
+            title: 'IMDb Sentiment Analysis Web App',
+            description: 'LSTM-based NLP model to classify IMDb reviews, including text preprocessing and SHAP-based interpretability.',
+            fullDescription: 'Implemented an LSTM-based NLP model to classify IMDb reviews, including text preprocessing, SHAP-based interpretability, and a Flask-based web interface.',
+            tech: ['Deep Learning', 'LSTM', 'TensorFlow', 'Flask'],
+            category: 'AI/ML',
+            github: 'https://github.com/omkarrathod23',
+            live: '#',
+            image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&q=80',
+            metrics: [
+                { value: 'NLP', label: 'Model' },
+                { value: 'SHAP', label: 'Analysis' },
+                { value: 'Flask', label: 'Interface' }
             ],
             featured: false,
-            date: '2025-11',
-            team: '2 Members',
-            stars: 67,
+            date: '2025-10',
+            team: 'Solo',
+            stars: 35,
+            difficulty: 'Intermediate',
+            gradient: 'from-purple-600 via-fuchsia-600 to-pink-600'
+        },
+        {
+            id: 6,
+            title: 'Police Crime Prediction System',
+            description: 'Crime prediction and station management system using historical and geospatial data with hotspot visualization.',
+            fullDescription: 'Designed a crime prediction and station management system using historical and geospatial data, featuring hotspot visualization dashboards and automated FIR workflows.',
+            tech: ['Python', 'FastAPI', 'Firebase', 'GIS'],
+            category: 'AI/ML',
+            github: 'https://github.com/omkarrathod23',
+            live: '#',
+            image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80',
+            metrics: [
+                { value: 'Geospatial', label: 'Data' },
+                { value: 'Hotspot', label: 'Viz' },
+                { value: 'Automated', label: 'Flows' }
+            ],
+            featured: false,
+            date: '2025-09',
+            team: 'Solo',
+            stars: 29,
             difficulty: 'Advanced',
-            gradient: 'from-orange-600 via-red-600 to-pink-600'
+            gradient: 'from-cyan-600 via-blue-600 to-indigo-600'
         }
     ];
 
@@ -167,13 +211,20 @@ const Projects = () => {
                         Featured Projects
                     </motion.h2>
                     <motion.p
-                        className="text-secondary text-base md:text-lg max-w-2xl mx-auto leading-relaxed"
+                        className="text-neutral-700 dark:text-neutral-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.3 }}
                     >
-                        A selection of my recent work in <span className="text-white font-medium">Full Stack Development</span> and <span className="text-white font-medium">AI Integration</span>.
+                        A selection of my recent work in{" "}
+                        <span className="font-semibold text-neutral-900 dark:text-white">
+                            Full Stack Development
+                        </span>{" "}
+                        and{" "}
+                        <span className="font-semibold text-neutral-900 dark:text-white">
+                            AI Integration
+                        </span>.
                     </motion.p>
                 </div>
 
@@ -194,8 +245,8 @@ const Projects = () => {
                                     key={category}
                                     onClick={() => setActiveCategory(category)}
                                     className={`relative px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${isActive
-                                            ? 'bg-white text-black shadow-lg shadow-white/10'
-                                            : 'bg-white/5 text-secondary hover:bg-white/10 hover:text-white border border-white/5'
+                                        ? 'bg-white text-black shadow-lg shadow-white/10'
+                                        : 'bg-white/5 text-secondary hover:bg-white/10 hover:text-white border border-white/5'
                                         }`}
                                 >
                                     {category}
@@ -271,7 +322,7 @@ const Projects = () => {
                             exit="hidden"
                             className={
                                 viewMode === 'grid'
-                                    ? 'grid grid-cols-1 md:grid-cols-2 gap-6'
+                                    ? 'grid grid-cols-1 lg:grid-cols-2 gap-8'
                                     : 'flex flex-col gap-4 max-w-3xl mx-auto'
                             }
                         >
@@ -282,6 +333,7 @@ const Projects = () => {
                                     layout
                                     onClick={() => setSelectedProject(project)}
                                     className="cursor-pointer"
+                                    data-robot-msg={`Click to see ${project.title}`}
                                 >
                                     <ProjectCard
                                         {...project}
@@ -340,7 +392,7 @@ const Projects = () => {
                 difficultyColors={difficultyColors}
                 categoryColors={categoryColors}
             />
-        </section>
+        </section >
     );
 };
 

@@ -160,7 +160,7 @@ const ArticleCard = ({ article, index, onClick, isLight }) => (
         />
 
         {/* Main Card Container - Deep Premium Black */}
-        <div className={`relative flex items-center gap-4 sm:gap-6 p-4 sm:p-7 backdrop-blur-3xl border rounded-2xl transition-all duration-700 overflow-hidden ${isLight
+        <div className={`relative flex flex-col sm:flex-row items-center sm:items-center gap-6 sm:gap-6 p-6 sm:p-7 backdrop-blur-3xl border rounded-2xl transition-all duration-700 overflow-hidden ${isLight
             ? 'bg-white/80 border-black/5 group-hover:bg-white/95'
             : 'bg-[#030712]/80 border-white/[0.04] group-hover:bg-[#030712]/60 group-hover:border-white/[0.12] shadow-[0_4px_20px_rgba(0,0,0,0.3)]'
             }`}>
@@ -172,7 +172,7 @@ const ArticleCard = ({ article, index, onClick, isLight }) => (
             />
 
             {/* Cover Image with Parallax Scale */}
-            <div className={`relative w-24 h-24 sm:w-28 sm:h-28 flex-shrink-0 overflow-hidden rounded-2xl shadow-2xl ring-1 ${isLight ? 'ring-black/5' : 'ring-white/[0.08]'
+            <div className={`relative w-full sm:w-28 h-40 sm:h-28 flex-shrink-0 overflow-hidden rounded-2xl shadow-2xl ring-1 ${isLight ? 'ring-black/5' : 'ring-white/[0.08]'
                 } text-[0px]`}>
                 <motion.img
                     src={article.image}
@@ -187,31 +187,33 @@ const ArticleCard = ({ article, index, onClick, isLight }) => (
             </div>
 
             {/* Content Area */}
-            <div className="flex-grow min-w-0">
-                <div className="flex items-center gap-2 mb-3">
-                    <span
-                        className="w-2 h-2 rounded-full"
-                        style={{ backgroundColor: article.color, boxShadow: `0 0 15px ${article.color}` }}
-                    />
-                    <div className={`flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.25em] ${isLight ? 'text-black/60' : 'text-white/30'
-                        }`}>
-                        <span className="flex items-center gap-1.5">
-                            <Calendar size={12} className="opacity-50" />
-                            {article.date}
-                        </span>
-                        <span className="flex items-center gap-1.5">
-                            <Clock size={12} className="opacity-50" />
-                            {article.readTime}
-                        </span>
+            <div className="flex-grow min-w-0 text-center sm:text-left w-full">
+                <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 mb-3">
+                    <div className="flex items-center gap-2">
+                        <span
+                            className="w-2 h-2 rounded-full"
+                            style={{ backgroundColor: article.color, boxShadow: `0 0 15px ${article.color}` }}
+                        />
+                        <div className={`flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.25em] ${isLight ? 'text-black/60' : 'text-white/30'
+                            }`}>
+                            <span className="flex items-center gap-1.5 whitespace-nowrap">
+                                <Calendar size={12} className="opacity-50" />
+                                {article.date}
+                            </span>
+                            <span className="flex items-center gap-1.5 whitespace-nowrap">
+                                <Clock size={12} className="opacity-50" />
+                                {article.readTime}
+                            </span>
+                        </div>
                     </div>
                 </div>
 
-                <h3 className={`text-xl font-black mb-4 line-clamp-1 tracking-tight transition-all duration-500 ${isLight ? 'text-black group-hover:text-black' : 'text-sky-50/90 group-hover:text-white group-hover:translate-x-1'
+                <h3 className={`text-xl sm:text-xl font-black mb-4 sm:line-clamp-1 tracking-tight transition-all duration-500 ${isLight ? 'text-black group-hover:text-black' : 'text-sky-50/90 group-hover:text-white group-hover:translate-x-1'
                     }`}>
                     {article.title}
                 </h3>
 
-                <div className="flex flex-wrap gap-2.5">
+                <div className="flex flex-wrap justify-center sm:justify-start gap-2.5">
                     {article.tags.map(tag => (
                         <span
                             key={tag}
@@ -229,7 +231,7 @@ const ArticleCard = ({ article, index, onClick, isLight }) => (
             {/* Floating Action Arrow */}
             <div className={`hidden sm:flex flex-shrink-0 w-12 h-12 items-center justify-center rounded-2xl border opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:translate-x-0 translate-x-6 ${isLight
                 ? 'bg-black/5 border-black/10 text-black/40 group-hover:text-black'
-                : 'bg-white/[0.03] border-white/10 text-white/30 group-hover:text-white shadow-[0_0_20px_rgba(0,0,0,0.5)]'
+                : 'bg-white/[0.03] border-white/10 text-white/30 group-hover:text-white shadow-[0_0_20_rgba(0,0,0,0.5)]'
                 }`}>
                 <ArrowUpRight size={24} />
             </div>

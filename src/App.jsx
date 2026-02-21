@@ -7,6 +7,7 @@ import Experience from './components/sections/Experience';
 import Projects from './components/sections/Projects';
 import Contact from './components/sections/Contact';
 import GithubContributions from './components/ui/GithubContributions';
+import ThoughtsAndWriting from './components/sections/ThoughtsAndWriting';
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                 <Experience />
                 <Projects />
                 <GithubContributions />
+                <ThoughtsAndWriting />
                 <Contact />
             </div>
         </Layout>

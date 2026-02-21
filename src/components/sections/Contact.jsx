@@ -54,7 +54,7 @@ const Contact = () => {
                 className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10"
             >
                 {/* Minimalist Signature Block */}
-                <div className="flex flex-col md:flex-row items-center justify-between gap-10 p-8 md:p-12 rounded-[2.5rem] bg-bg-secondary/40 backdrop-blur-xl border border-accent-primary/5 shadow-2xl relative overflow-visible group">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-10 p-6 sm:p-8 md:p-12 rounded-[2.5rem] bg-bg-secondary/40 backdrop-blur-xl border border-accent-primary/5 shadow-2xl relative overflow-hidden group">
                     {/* Decorative side accent */}
                     <div className="absolute left-0 top-1/4 bottom-1/4 w-1 bg-accent-primary/20 rounded-r-full group-hover:bg-accent-primary/50 transition-colors duration-500" />
 
@@ -94,18 +94,18 @@ const Contact = () => {
                                     data-robot-msg={method.robotMsg}
                                     onMouseEnter={() => setHoveredMethod(method.id)}
                                     onMouseLeave={() => setHoveredMethod(null)}
-                                    className="flex items-center justify-between gap-4 px-6 py-4 rounded-2xl bg-accent-primary/5 border border-accent-primary/5 hover:bg-accent-primary/10 hover:border-accent-primary/10 transition-all duration-300 group/link"
+                                    className="flex items-center justify-between gap-4 px-4 sm:px-6 py-4 rounded-2xl bg-accent-primary/5 border border-accent-primary/5 hover:bg-accent-primary/10 hover:border-accent-primary/10 transition-all duration-300 group/link"
                                 >
-                                    <div className="flex items-center gap-4">
-                                        <div className="p-2 rounded-lg bg-accent-primary/10 text-accent-primary group-hover/link:bg-accent-primary group-hover/link:text-bg-primary transition-all duration-300">
+                                    <div className="flex items-center gap-4 min-w-0">
+                                        <div className="p-2 rounded-lg bg-accent-primary/10 text-accent-primary group-hover/link:bg-accent-primary group-hover/link:text-bg-primary transition-all duration-300 flex-shrink-0">
                                             <method.icon size={18} />
                                         </div>
-                                        <div className="flex flex-col">
-                                            <span className="text-xs font-black text-accent-primary/50 group-hover/link:text-accent-primary/80 transition-colors">{method.label}</span>
-                                            <span className="text-[10px] font-medium text-secondary truncate max-w-[120px]">{method.value}</span>
+                                        <div className="flex flex-col min-w-0 overflow-hidden">
+                                            <span className="text-xs font-black text-accent-primary/50 group-hover/link:text-accent-primary/80 transition-colors uppercase tracking-widest">{method.label}</span>
+                                            <span className="text-[10px] font-medium text-secondary truncate">{method.value}</span>
                                         </div>
                                     </div>
-                                    <div className="w-8 h-8 flex items-center justify-center rounded-full bg-accent-primary/5 group-hover/link:translate-x-1 transition-transform">
+                                    <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center rounded-full bg-accent-primary/5 group-hover/link:translate-x-1 transition-transform">
                                         <div className="w-1.5 h-1.5 border-t-2 border-r-2 border-accent-primary/20 group-hover/link:border-accent-primary rotate-45" />
                                     </div>
                                 </motion.a>

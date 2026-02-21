@@ -202,7 +202,7 @@ const Projects = () => {
                 {/* Section Header */}
                 <div className="text-center mb-12">
                     <motion.h2
-                        className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight"
+                        className="text-3xl md:text-4xl font-bold text-accent-primary mb-4 tracking-tight"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -211,18 +211,18 @@ const Projects = () => {
                         Featured Projects
                     </motion.h2>
                     <motion.p
-                        className="text-neutral-700 dark:text-neutral-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed"
+                        className="text-secondary text-base md:text-lg max-w-2xl mx-auto leading-relaxed"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.3 }}
                     >
                         A selection of my recent work in{" "}
-                        <span className="font-semibold text-neutral-900 dark:text-white">
+                        <span className="font-semibold text-accent-primary">
                             Full Stack Development
                         </span>{" "}
                         and{" "}
-                        <span className="font-semibold text-neutral-900 dark:text-white">
+                        <span className="font-semibold text-accent-primary">
                             AI Integration
                         </span>.
                     </motion.p>
@@ -245,8 +245,8 @@ const Projects = () => {
                                     key={category}
                                     onClick={() => setActiveCategory(category)}
                                     className={`relative px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${isActive
-                                        ? 'bg-white text-black shadow-lg shadow-white/10'
-                                        : 'bg-white/5 text-secondary hover:bg-white/10 hover:text-white border border-white/5'
+                                        ? 'bg-accent-primary text-bg-primary shadow-lg shadow-accent-primary/10'
+                                        : 'bg-accent-primary/5 text-secondary hover:bg-accent-primary/10 hover:text-accent-primary border border-accent-primary/5'
                                         }`}
                                 >
                                     {category}
@@ -257,7 +257,7 @@ const Projects = () => {
 
                     {/* View Toggle */}
                     <motion.div
-                        className="flex items-center gap-1 bg-white/5 rounded-lg p-1 border border-white/10"
+                        className="flex items-center gap-1 bg-accent-primary/5 rounded-lg p-1 border border-accent-primary/10"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -266,8 +266,8 @@ const Projects = () => {
                         <button
                             onClick={() => setViewMode('grid')}
                             className={`p-2 rounded-md transition-all duration-200 ${viewMode === 'grid'
-                                ? 'bg-white/10 text-white shadow-sm'
-                                : 'text-secondary hover:text-white hover:bg-white/5'
+                                ? 'bg-accent-primary/10 text-accent-primary shadow-sm'
+                                : 'text-secondary hover:text-accent-primary hover:bg-accent-primary/5'
                                 }`}
                             aria-label="Grid view"
                         >
@@ -276,8 +276,8 @@ const Projects = () => {
                         <button
                             onClick={() => setViewMode('list')}
                             className={`p-2 rounded-md transition-all duration-200 ${viewMode === 'list'
-                                ? 'bg-white/10 text-white shadow-sm'
-                                : 'text-secondary hover:text-white hover:bg-white/5'
+                                ? 'bg-accent-primary/10 text-accent-primary shadow-sm'
+                                : 'text-secondary hover:text-accent-primary hover:bg-accent-primary/5'
                                 }`}
                             aria-label="List view"
                         >
@@ -295,14 +295,14 @@ const Projects = () => {
                             exit={{ opacity: 0, height: 0 }}
                             className="flex justify-center mb-8"
                         >
-                            <div className="flex items-center gap-2 text-xs bg-white/5 border border-white/10 rounded-full px-4 py-1.5">
+                            <div className="flex items-center gap-2 text-xs bg-accent-primary/5 border border-accent-primary/10 rounded-full px-4 py-1.5">
                                 <Filter size={12} className="text-purple-400" />
                                 <span className="text-secondary">
-                                    Showing <span className="text-white font-medium">{filteredProjects.length}</span> {activeCategory} projects
+                                    Showing <span className="text-accent-primary font-medium">{filteredProjects.length}</span> {activeCategory} projects
                                 </span>
                                 <button
                                     onClick={() => setActiveCategory('All')}
-                                    className="ml-2 text-purple-400 hover:text-white transition-colors"
+                                    className="ml-2 text-purple-400 hover:text-accent-primary transition-colors"
                                 >
                                     <X size={12} />
                                 </button>
@@ -355,7 +355,7 @@ const Projects = () => {
                             <p className="text-secondary text-lg">No projects found in this category.</p>
                             <button
                                 onClick={() => setActiveCategory('All')}
-                                className="mt-4 px-6 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg font-medium transition-all"
+                                className="mt-4 px-6 py-2 bg-accent-primary/10 hover:bg-accent-primary/20 text-accent-primary rounded-lg font-medium transition-all"
                             >
                                 View All Projects
                             </button>
@@ -369,7 +369,7 @@ const Projects = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.3 }}
-                    className="mt-16 flex flex-wrap justify-center gap-8 md:gap-16 border-t border-white/5 pt-8"
+                    className="mt-16 flex flex-wrap justify-center gap-8 md:gap-16 border-t border-accent-primary/5 pt-8"
                 >
                     {[
                         { label: 'Projects', value: projects.length },
@@ -377,7 +377,7 @@ const Projects = () => {
                         { label: 'Stars', value: projects.reduce((sum, p) => sum + p.stars, 0) },
                     ].map((stat, idx) => (
                         <div key={idx} className="text-center">
-                            <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
+                            <div className="text-2xl font-bold text-accent-primary mb-1">{stat.value}</div>
                             <div className="text-[10px] text-secondary uppercase tracking-widest">{stat.label}</div>
                         </div>
                     ))}

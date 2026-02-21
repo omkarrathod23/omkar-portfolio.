@@ -31,12 +31,10 @@
 
 :root.light {
   --bg-primary: #ffffff;
-  --bg-secondary: #fafafa;
-  /* Cleaner off-white */
-  --accent-primary: #09090b;
-  /* Darker text for readability */
-  --accent-secondary: #52525b;
-  --secondary: #71717a;
+  --bg-secondary: #f4f4f5;
+  --accent-primary: #000000;
+  --accent-secondary: #000000;
+  --secondary: #000000;
   --dim: #e4e4e7;
 }
 
@@ -137,12 +135,15 @@
 /* -- Section header label & icon -- */
 .section-label {
   color: #64748b;
-  /* slate-500, visible in both modes */
+  /* slate-500 default */
+}
+
+:root.light .section-label {
+  color: #000000;
 }
 
 .section-icon {
   color: #6366f1;
-  /* indigo, looks great on both */
 }
 
 /* -- Skill pills (dark mode default) -- */

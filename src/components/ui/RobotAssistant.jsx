@@ -104,7 +104,7 @@ const RobotAssistant = () => {
                                     animate={{ opacity: 1, y: -45, x: 25, scale: 1 }}
                                     exit={{ opacity: 0, scale: 0.9 }}
                                     transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                                    className="absolute left-full top-0 whitespace-nowrap bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-xl rounded-bl-none border border-black/5 shadow-xl"
+                                    className="absolute left-full top-0 whitespace-nowrap bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-xl rounded-bl-none border border-black/15 shadow-xl"
                                 >
                                     <span className="text-[10px] font-black text-black uppercase tracking-wider">
                                         {contextMsg || defaultMessages[currentDefaultMsg]}

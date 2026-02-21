@@ -30,7 +30,7 @@ const GithubContributions = () => {
           </motion.div>
 
           <motion.h2
-            className="text-2xl md:text-3xl font-bold text-white mb-3 tracking-tight"
+            className="text-2xl md:text-3xl font-bold text-accent-primary mb-3 tracking-tight"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

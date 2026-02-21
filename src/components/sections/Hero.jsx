@@ -18,7 +18,7 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: 'easeOut' }}
-                className="relative w-full max-w-2xl bg-bg-secondary rounded-xl overflow-hidden shadow-2xl border border-white/5"
+                className="relative w-full max-w-2xl bg-bg-secondary rounded-xl overflow-hidden shadow-2xl border border-accent-primary/5"
             >
                 {/* ================= Banner ================= */}
                 <div className="relative h-64 w-full overflow-hidden group">
@@ -105,7 +105,7 @@ const Hero = () => {
                     </div>
 
                     {/* Divider */}
-                    <div className="h-px w-full bg-white/10 my-6" />
+                    <div className="h-px w-full bg-accent-primary/10 my-6" />
 
                     {/* Bio */}
                     <div data-robot-msg="My technical journey">
@@ -131,7 +131,7 @@ const SocialLink = ({ href, icon: Icon, msg }) => (
         target="_blank"
         rel="noopener noreferrer"
         data-robot-msg={msg}
-        className="p-2 rounded-full hover:bg-white/10 text-secondary hover:text-accent-primary transition-all"
+        className="p-2 rounded-full hover:bg-accent-primary/10 text-secondary hover:text-accent-primary transition-all"
     >
         <Icon size={20} />
     </a>

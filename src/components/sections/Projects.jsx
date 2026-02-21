@@ -26,7 +26,7 @@ const Projects = () => {
             fullDescription: 'Built an enterprise-grade vendor billing and payment reconciliation platform with JWT-secured APIs, automated invoice-to-payment matching, and dispute workflows to reduce manual accounting effort and improve reconciliation accuracy.',
             tech: ['Java', 'Spring Boot', 'React', 'TypeScript', 'PostgreSQL'],
             category: 'Full Stack',
-            github: 'https://github.com/omkarrathod23',
+            github: 'https://github.com/omkarrathod23/smartreconcile.git',
             live: '#',
             image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
             metrics: [
@@ -48,7 +48,7 @@ const Projects = () => {
             fullDescription: 'Developed a scalable billing and reconciliation system with FIFO and exact-match engines, secure REST APIs, and automated workflows for streamlined vendor payment processing.',
             tech: ['Java', 'Spring Boot', 'Next.js', 'PostgreSQL'],
             category: 'Full Stack',
-            github: 'https://github.com/omkarrathod23',
+            github: 'https://github.com/omkarrathod23/smartreconcile.git',
             live: '#',
             image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
             metrics: [
@@ -70,7 +70,7 @@ const Projects = () => {
             fullDescription: 'Built a production-ready e-commerce platform with product listing, filtering, cart, authentication, REST API integration, and cloud deployment.',
             tech: ['Next.js', 'React', 'Node.js', 'Express', 'MongoDB'],
             category: 'Full Stack',
-            github: 'https://github.com/omkarrathod23',
+            github: 'https://github.com/omkarrathod23/eCommerce.git',
             live: '#',
             image: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80',
             metrics: [
@@ -92,7 +92,7 @@ const Projects = () => {
             fullDescription: 'Created an XGBoost-based churn prediction model achieving 66.49% accuracy with feature engineering, data preprocessing, and an interactive real-time prediction dashboard.',
             tech: ['Python', 'XGBoost', 'Streamlit', 'ML'],
             category: 'AI/ML',
-            github: 'https://github.com/omkarrathod23',
+            github: 'https://github.com/omkarrathod23/Customer-Churn-Risk-Prediction-Model.git',
             live: '#',
             image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
             metrics: [
@@ -114,7 +114,7 @@ const Projects = () => {
             fullDescription: 'Implemented an LSTM-based NLP model to classify IMDb reviews, including text preprocessing, SHAP-based interpretability, and a Flask-based web interface.',
             tech: ['Deep Learning', 'LSTM', 'TensorFlow', 'Flask'],
             category: 'AI/ML',
-            github: 'https://github.com/omkarrathod23',
+            github: 'https://github.com/omkarrathod23/imdb-sentiment-website.git',
             live: '#',
             image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&q=80',
             metrics: [
@@ -136,7 +136,7 @@ const Projects = () => {
             fullDescription: 'Designed a crime prediction and station management system using historical and geospatial data, featuring hotspot visualization dashboards and automated FIR workflows.',
             tech: ['Python', 'FastAPI', 'Firebase', 'GIS'],
             category: 'AI/ML',
-            github: 'https://github.com/omkarrathod23',
+            github: 'https://github.com/omkarrathod23/crime-management.git',
             live: '#',
             image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80',
             metrics: [
